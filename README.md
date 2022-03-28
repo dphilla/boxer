@@ -1,4 +1,4 @@
-# wasm-boxer (todo: a box logo, rather than a fighter)
+# wasm-boxer (todo: a boxer logo: rendition of Mia St John throwing a punch)
 
 ## Box up your project to run in almost any browser, machine, vm, or container environment.
 
