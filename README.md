@@ -1,4 +1,5 @@
-# wasm-boxer (todo: a boxer logo: rendition of Mia St John throwing a punch)
+# wasm-boxer  
+<img src="https://user-images.githubusercontent.com/20820229/160672772-c6d705f0-cd89-4d02-896f-49015d947f94.png" width="200" height="200">
 
 ## Box up your project to run in almost any browser, machine, vm, or container environment.
 
