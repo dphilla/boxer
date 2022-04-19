@@ -1,8 +1,10 @@
-# wasm-boxer  
+<img src="https://user-images.githubusercontent.com/20820229/164059786-8d082b44-59d6-431a-adf4-993116c8d492.png" width="300" height="400" style="margin-left:600px"></img>
 
-<img src="https://user-images.githubusercontent.com/20820229/164059786-8d082b44-59d6-431a-adf4-993116c8d492.png" width="300" height="400">
+# WasmBoxer
 
-## Box up your project to run in almost any environment.
+## A unified build tool for compiling projects to WebAssembly
+
+### Box up your project to run in almost any environment.
 
 
 `wbx script.rb`
