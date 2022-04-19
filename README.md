@@ -1,5 +1,5 @@
 # wasm-boxer  
-<img src="https://user-images.githubusercontent.com/20820229/160672772-c6d705f0-cd89-4d02-896f-49015d947f94.png" width="200" height="200">
+<img src="https://user-images.githubusercontent.com/20820229/164059439-b00f701e-a997-4bec-8efc-67dc41ca0b56.png" width="200" height="200">
 
 ## Box up your project to run in almost any browser, machine, vm, or container environment.
 
