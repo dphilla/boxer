@@ -7,7 +7,7 @@
 ### Box up your project to run in almost any environment.
 
 
-`wbx script.rb`
+`wbx script.rb` (returns AOT)
 
 `wbx script.rb --web`
 
