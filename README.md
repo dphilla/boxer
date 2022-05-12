@@ -2,21 +2,8 @@
 
 # wasm-boxer
 
-## Compile your project to WebAssembly in a single step.
+## Compile your project to WebAssembly in a single step
 
-`wbx script.rb`
+### Description
 
-`wbx script.rb --web`
-
-`wbx script.rb --runtime wasmtime`
-
-Ex. a Rails app:
-
-`wbx .` 
-
-
-### Box up your project to run in almost any environment.
-
-`Default `wbx` compiles AOT to Wasm (no runtime needed -- HOPEFULLY). The output is a .wasm file that can run on any [WebAssembly Runtime](https://github.com/appcypher/awesome-wasm-runtimes), or be Ahead-of-Time compiled.
-
-show benchmarks compared to containers vms: start up times, size, native vs wasm excution, etc. tons and tons of good visualizations.
+This repo is a collection of efforts related to the `wasm-boxer` project. The aim of this project is to create a unified build tool for compiling many language runtimes to WebAssembly (Wasm). This work draws on several WebAssembly tooling projects to make the endeavor possible.
