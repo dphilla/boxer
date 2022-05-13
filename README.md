@@ -10,6 +10,7 @@
 
 ## Compile your project to WebAssembly in a single step
 
-### Description
+### Description - WIP
 
 This repo is a collection of efforts related to the `wasm-boxer` project. The aim of this project is to create a unified build tool for compiling many language runtimes to WebAssembly (Wasm). This work draws on several WebAssembly tooling projects to make the endeavor possible.
+
