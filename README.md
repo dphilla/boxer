@@ -24,3 +24,12 @@ This group of modules can be understood as a **"Wasm Box"** -- an isolated group
 For ex.  -- a Python FAST API app + wasi-vfs, wasi-vn, and WASI-ipc. 
 
 See more: wasm component model, nanoprocess model, etc.
+
+### Related
+
+A Wasm Box is an implemenation of the (Component Model)[https://github.com/WebAssembly/component-model], influenced by the (nanoprocess model)[https://bytecodealliance.org/articles/1-year-update]. Related and underlying fundamentals
+
+- (WASI)[https://github.com/WebAssembly/WASI]
+- (Module Linking)[https://github.com/WebAssembly/module-linking]
+- (Interface Types)[https://github.com/WebAssembly/interface-types/blob/main/proposals/interface-types/Explainer.md]
+
