@@ -27,7 +27,9 @@ See more: wasm component model, nanoprocess model, etc.
 
 ### Related
 
-A Wasm Box is an implemenation of the [Component Model](https://github.com/WebAssembly/component-model), influenced by the [nanoprocess model](https://bytecodealliance.org/articles/1-year-update). Related and underlying fundamentals
+A Wasm Box is an implemenation of the [Component Model](https://github.com/WebAssembly/component-model), influenced by the [Nanoprocess Model](https://bytecodealliance.org/articles/1-year-update). 
+
+Related and underlying fundamentals:
 
 - [WASI](https://github.com/WebAssembly/WASI)
 - [Module Linking](https://github.com/WebAssembly/module-linking)
