@@ -15,7 +15,7 @@
 This repo is a collection of efforts related to the `wasm-boxer` project. The aim of this project is to create a unified build tool for compiling many language runtimes to WebAssembly (Wasm). This work draws on several WebAssembly tooling projects to make the endeavor possible.
 
 
-### A "Wasm Box"
+### What is a Wasm Box?
 
 If you compile your project's language runtime, its dependencies, and application code to a WebAssembly module, what then? You may still need to do things like: make a network call over udp, tcp or https, access a filesystem, or communicate other processes running on a host. To acheive this, while leveraging the sandboxing security features and portability of WebAssembly, the concept of using other WebAssembly modules to act as, or even replace, some of these other components. 
 
