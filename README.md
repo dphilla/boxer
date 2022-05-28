@@ -21,7 +21,7 @@ If you compile your project's language runtime, its dependencies, and applicatio
 
 This group of modules can be understood as a **"Wasm Box"** -- an isolated group of system-like resources that allow your project to run on almost any host.
 
-For ex. -- a Python FAST API / Rails app app + wasi-vfs, wasi-vn, and WASI-ipc (need this??). 
+For ex. -- a Python FAST API / Rails App + wasi-vfs, wasi-vn, and WASI-ipc (need this??). 
 
 ### Related
 
