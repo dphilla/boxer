@@ -1,6 +1,6 @@
 <p align="center">
   <p align="center">
-    <a href="https://rails.spinup.dev" target="_blank">
+    <a href="https://en.wikipedia.org/wiki/Mia_St._John" target="_blank">
       <img src="https://user-images.githubusercontent.com/20820229/164059786-8d082b44-59d6-431a-adf4-993116c8d492.png" alt="Mia St John" width="300"             height="400">
     </a>
   </p>
