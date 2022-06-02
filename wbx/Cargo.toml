@@ -11,3 +11,5 @@ clap = { version = "3.0", features = ["derive"] }
 anyhow = "1.0"
 indicatif = "0.16.2"
 assert_fs = "1.0"
+reqwest = { version = "0.11.10", features = ["blocking"]}
+wasmtime = "0.37.0"
