@@ -6,7 +6,7 @@
   </p>
 </p>
 
-# wasmboxer
+# WasmBoxer
 
 ## Compile your project to WebAssembly in a single step
 
