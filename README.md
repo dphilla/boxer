@@ -8,7 +8,7 @@
 
 # WasmBoxer
 
-## Compile your project to WebAssembly in a single step
+## Build your project to run on WebAssembly in a single step.
 
 ### Description
 
