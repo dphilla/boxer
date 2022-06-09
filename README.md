@@ -1,3 +1,5 @@
+# WasmBoxer
+
 <p align="center">
   <p align="center">
     <a href="https://en.wikipedia.org/wiki/Mia_St._John" target="_blank">
@@ -6,7 +8,6 @@
   </p>
 </p>
 
-# WasmBoxer
 
 ## Build your project to run on WebAssembly in a single step.
 
