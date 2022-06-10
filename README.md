@@ -13,8 +13,11 @@
 
 ### Description
 
-WasmBoxer is a unified build tool for compiling many language runtimes to [WebAssembly (Wasm)](https://webassembly.org). This work draws on several WebAssembly tooling projects to make the endeavor possible.
+WasmBoxer is a unified build tool for implementing many language runtimes to [WebAssembly (Wasm)](https://webassembly.org). This work draws on several WebAssembly tooling projects to make the endeavor possible.
 
+### Who is this for?
+
+Anying building a project in Python or Ruby who wants to deploy a Wasm/WASI distribution, rather than another deployment strategy, like baremetal, a VM, or a container.
 
 ### A Wasm Box?
 
