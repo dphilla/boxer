@@ -8,10 +8,26 @@
   </p>
 </p>
 
+# WasmBoxer
 
-## Dockerfile -> Wasm Binary
+## Overview
+WasmBoxer is an open-source project designed to reimagine cloud computing by transitioning from traditional container technology to WebAssembly (Wasm) based distributions, known as "Boxes" or "Wasm-Boxes".
 
-### Example
+## Motivation
+While containers have been a cornerstone of cloud computing, providing isolated environments for applications, they come with significant drawbacks. They often result in larger, less efficient deployments with slower startup times and rely heavily on the underlying operating system/kernel for security, which can introduce vulnerabilities and platform lock-in.
+
+## Solution: WasmBoxer
+WasmBoxer offers a new solution by providing tooling for converting existing containerized workloads and definitions into near-universally deployable Wasm distributions. These "Boxes" offer environments comparable to those provided by containers but are vastly more efficient thanks to the lightweight, sandboxed execution capabilities of WebAssembly.
+
+### Key Advantages of WebAssembly:
+- **Reduced Overhead:** Wasm's compact binary instruction format ensures lightweight execution, drastically cutting down the overhead seen in traditional containers.
+- **Enhanced Performance:** The efficiency of Wasm leads to improved performance and smaller, more efficient deployments, perfectly suited for cloud computing.
+- **Superior Security:** Wasm's memory-safe, isolated execution environment provides a higher level of security, independent of the operating system.
+- **Run (almost) Everywhere** Wasm can run a anywhere there is a WebAssembly runtime, including browsers, servers, and embedded devices; existing runtimes are available on for [wide variety of architectures.](https://github.com/appcypher/awesome-wasm-runtimes)
+
+## Example
+
+### Dockerfile -> Wasm Binary
 
 For for this file:
 
