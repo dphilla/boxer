@@ -23,7 +23,7 @@ WasmBoxer offers a new solution by providing tooling for converting existing con
 - **Reduced Overhead:** Wasm's compact binary instruction format ensures lightweight execution, drastically cutting down the overhead seen in traditional containers.
 - **Enhanced Performance:** The efficiency of Wasm leads to improved performance and smaller, more efficient deployments, perfectly suited for cloud computing.
 - **Superior Security:** Wasm's memory-safe, isolated execution environment provides a higher level of security, independent of the operating system.
-- **Run (almost) Everywhere** Wasm can run a anywhere there is a WebAssembly runtime, including browsers, servers, and embedded devices; existing runtimes are available on for [wide variety of architectures.](https://github.com/appcypher/awesome-wasm-runtimes)
+- **Run (almost) Everywhere** Wasm can run a anywhere there is a WebAssembly runtime, including browsers, servers, and embedded devices; existing runtimes are available on for a [wide variety of architectures.](https://github.com/appcypher/awesome-wasm-runtimes)
 
 ## Example
 
