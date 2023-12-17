@@ -19,6 +19,15 @@ While containers have been a cornerstone of cloud computing, providing isolated 
 ## Solution: WasmBoxer
 WasmBoxer offers a new solution by providing tooling for converting existing containerized workloads and definitions into near-universally deployable Wasm distributions. These "Boxes" offer environments comparable to those provided by containers but are vastly more efficient thanks to the lightweight, sandboxed execution capabilities of WebAssembly.
 
+<p align="center">
+  <p align="center">
+    <a href="https://boxer.dev" target="_blank">
+      <img src="https://github.com/dphilla/wasm-vfs/assets/20820229/4b0309d8-c8ae-427a-8af3-67857a8eebf3" alt="Container and Box" width="400"             height="400">
+    </a>
+  </p>
+</p>
+
+
 ### Key Advantages of WebAssembly:
 - **Reduced Overhead:** Wasm's compact binary instruction format ensures lightweight execution, drastically cutting down the overhead seen in traditional containers.
 - **Enhanced Performance:** The efficiency of Wasm leads to improved performance and smaller, more efficient deployments, perfectly suited for cloud computing.
