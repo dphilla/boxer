@@ -2,6 +2,8 @@
 
 1. **FROM**
    - Initializes a new build stage and sets the base layer.
+   - Standard base layer for alpha release: https://github.com/arjunr2/WALI/blob/main/docs/support.md
+      - Future versions will support full virtualization. See [platform layering](https://github.com/dphilla/marcotte-wasm), and [interfaces](https://github.com/dphilla/wasm-libc).
 
 2. **RUN**
    - Executes commands in a new layer on top of the current layer and commits the results.
