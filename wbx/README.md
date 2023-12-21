@@ -2,7 +2,7 @@
 
 1. **FROM**
    - Initializes a new build stage and sets the base layer.
-   - Standard base layer for alpha release: https://github.com/arjunr2/WALI/blob/main/docs/support.md
+   - The standard base layer for alpha release supports these [libc interfaces](https://github.com/arjunr2/WALI/blob/main/docs/support.md).
       - Future versions will support full virtualization. See [platform layering](https://github.com/dphilla/marcotte-wasm), and [interfaces](https://github.com/dphilla/wasm-libc).
 
 2. **RUN**
