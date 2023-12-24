@@ -4,6 +4,7 @@
    - Initializes a new build stage and sets the base layer.
    - The standard base layer for alpha release supports these [syscall interfaces](https://github.com/arjunr2/WALI/blob/main/docs/support.md).
       - Future versions will support full virtualization. See [platform layering](https://github.com/dphilla/marcotte-wasm), and [interfaces](https://github.com/dphilla/wasm-libc).
+   - A base layer includes the Wasm runtime by default, but can be produced with syscall interfaces only, in pure Wasm, with `--wasm-only`
 
 2. **RUN**
    - Executes commands in a new layer on top of the current layer and commits the results.
@@ -12,7 +13,7 @@
      - Exec form: `RUN ["executable", "param1", "param2"]`
 
 3. **CMD**
-   - Provides defaults for an executing container. Only one CMD instruction in a Dockerfile.
+   - Provides defaults for an executing box. Only one CMD instruction in a Dockerfile.
    - Forms:
      - Shell form: `CMD <command>`
      - Exec form: `CMD ["executable", "param1", "param2"]`
@@ -22,8 +23,9 @@
    - Syntax: `LABEL <key>=<value> ...`
 
 5. **EXPOSE**
-   - Informs Docker that the container listens on specified network ports at runtime.
+   - Informs Boxer that the box listens on specified network ports at runtime.
    - Syntax: `EXPOSE <port> [<port>/<protocol>...]`
+   - for default (os) builds only, future: component-based/modularized emulation
 
 6. **ENV**
    - Sets environment variables.
@@ -34,13 +36,13 @@
    - Syntax: `ADD <src>... <dest>`
 
 8. **COPY**
-   - Copies new files or directories and adds them to the filesystem of the container.
+   - Copies new files or directories and adds them to the filesystem of the box.
    - Syntax: `COPY <src>... <dest>`
    - Flags:
      - `--chown=<user>:<group>`: Set the user and group ownership of the copied files.
 
 9. **ENTRYPOINT**
-   - Configures a container that will run as an executable.
+   - Configures a box that will run as an executable.
    - Forms:
      - Shell form: `ENTRYPOINT <command>`
      - Exec form: `ENTRYPOINT ["executable", "param1", "param2"]`
@@ -66,23 +68,18 @@
     - Syntax: `ONBUILD <INSTRUCTION>`
 
 15. **STOPSIGNAL**
-    - Sets the system call signal that will be sent to the container to exit.
+    - Sets the system call signal that will be sent to the box to exit.
     - Syntax: `STOPSIGNAL <signal>`
 
 16. **HEALTHCHECK**
-    - Tells Docker how to test a container to check that it is still working.
+    - Tells Boxer how to test a box to check that it is still working.
     - Syntax: `HEALTHCHECK [OPTIONS] CMD <command>`
     - Options:
       - `--interval=<interval>`: Time between running the check.
       - `--timeout=<timeout>`: Time to wait before considering the check to have hung.
       - `--start-period=<start-period>`: Time to wait before starting checks.
-      - `--retries=<retries>`: Consecutive failures needed to consider a container as unhealthy.
+      - `--retries=<retries>`: Consecutive failures needed to consider a box as unhealthy.
 
 17. **SHELL**
     - Allows the default shell used for the shell form of commands to be overridden.
     - Syntax: `SHELL ["executable", "parameters"]`
-
-18. **MAINTAINER** (deprecated)
-    - Used to set the author field of the generated layer.
-    - Syntax: `MAINTAINER <name>`
-
