@@ -36,7 +36,7 @@ WasmBoxer offers a new solution by providing tooling for converting existing con
 
 ## Example
 
-### Dockerfile -> Wasm Binary
+### Dockerfile ➡ (Wasm)Box
 
 For for this file:
 
