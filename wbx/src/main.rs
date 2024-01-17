@@ -3,134 +3,122 @@ use std::fs::File;
 use std::io::{self, BufRead};
 use std::path::Path;
 use std::collections::HashMap;
+use dockerfile_parser::*;
 
-fn main() -> io::Result<()> {
-    let args: Vec<String> = env::args().collect();
-    if args.len() < 2 {
-        eprintln!("Usage: {} <path_to_Dockerfile>", args[0]);
-        std::process::exit(1);
+fn main() {
+
+// TODO: check validity first
+let dockerfile = Dockerfile::parse(r#"
+FROM python:3
+
+WORKDIR /usr/src/app
+
+COPY . .
+
+CMD [ "python", "./your-script.py" ]
+"#).unwrap();
+
+for stage in dockerfile.iter_stages() {
+  println!("stage #{}", stage.index);
+  let mut builder = Builder::new();
+  for ins in stage.instructions {
+    match ins {
+        Instruction::From(instr) => execute_from(builder, instr.clone()),
+        Instruction::Arg(instr) => execute_arg(instr.clone()),
+        Instruction::Label(instr) => execute_label(instr.clone()),
+        Instruction::Run(instr) => execute_run(instr.clone()),
+        Instruction::Entrypoint(instr) => execute_entrypoint(instr.clone()),
+        Instruction::Cmd(instr) => execute_cmd(instr.clone()),
+        Instruction::Copy(instr) => execute_copy(instr.clone()),
+        Instruction::Env(instr) => execute_env(instr.clone()),
+        Instruction::Misc(instr) => execute_misc(instr.clone()),
     }
-    let file_path = &args[1];
+    println!("  {:?}", ins);
+    println!("\n");
+  }
 
-    let directives = get_directives_mapping();
-
-    if let Ok(lines) = read_lines(file_path) {
-        for line in lines {
-            if let Ok(ip) = line {
-                let directive = ip.split_whitespace().next().unwrap_or_default().to_uppercase();
-                if let Some(execute) = directives.get(&directive) {
-                    execute();
-                } else if !directive.is_empty() {
-                    eprintln!("Directive {} not recognized", directive);
-                }
-            }
-        }
-    }
-
-    Ok(())
+  builder.build();
 }
 
-fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
-where
-    P: AsRef<Path>,
-{
-    let file = File::open(filename)?;
-    Ok(io::BufReader::new(file).lines())
 }
 
-fn get_directives_mapping() -> HashMap<String, Box<dyn Fn()>> {
-    let mut map = HashMap::new();
+fn execute_from(builder: Builder, instr: FromInstruction) {
+    builder.config_base(instr.content);
 
-    map.insert("FROM".to_string(), Box::new(execute_from));
-    map.insert("RUN".to_string(), Box::new(execute_run));
-    map.insert("CMD".to_string(), Box::new(execute_cmd));
-    map.insert("LABEL".to_string(), Box::new(execute_label));
-    map.insert("EXPOSE".to_string(), Box::new(execute_expose));
-    map.insert("ENV".to_string(), Box::new(execute_env));
-    map.insert("ADD".to_string(), Box::new(execute_add));
-    map.insert("COPY".to_string(), Box::new(execute_copy));
-    map.insert("ENTRYPOINT".to_string(), Box::new(execute_entrypoint));
-    map.insert("VOLUME".to_string(), Box::new(execute_volume));
-    map.insert("USER".to_string(), Box::new(execute_user));
-    map.insert("WORKDIR".to_string(), Box::new(execute_workdir));
-    map.insert("ARG".to_string(), Box::new(execute_arg));
-    map.insert("ONBUILD".to_string(), Box::new(execute_onbuild));
-    map.insert("STOPSIGNAL".to_string(), Box::new(execute_stopsignal));
-    map.insert("HEALTHCHECK".to_string(), Box::new(execute_healthcheck));
-    map.insert("SHELL".to_string(), Box::new(execute_shell));
-    map.insert("MAINTAINER".to_string(), Box::new(execute_maintainer));
-
-    map
+    println!("  {:?}", instr);
 }
 
-fn execute_from() {
-    println!("Executing FROM directive");
+fn execute_run(instr: RunInstruction) {
+    println!("  {:?}", instr);
 }
 
-fn execute_run() {
-    println!("Executing RUN directive");
+fn execute_cmd(instr: CmdInstruction) {
+    println!("  {:?}", instr);
 }
 
-fn execute_cmd() {
-    println!("Executing CMD directive");
+fn execute_label(instr: LabelInstruction) {
+    println!("  {:?}", instr);
 }
 
-fn execute_label() {
-    println!("Executing LABEL directive");
+//fn execute_expose(instr: ExposeInstruction) {
+    //println!("  {:?}", instr);
+//}
+
+fn execute_env(instr: EnvInstruction) {
+    println!("  {:?}", instr);
 }
 
-fn execute_expose() {
-    println!("Executing EXPOSE directive");
+//fn execute_add(instr: AddInstruction) {
+    //println!("  {:?}", instr);
+//}
+
+fn execute_copy(instr: CopyInstruction) {
+    println!("  {:?}", instr);
 }
 
-fn execute_env() {
-    println!("Executing ENV directive");
+fn execute_entrypoint(instr: EntrypointInstruction) {
+    println!("  {:?}", instr);
 }
 
-fn execute_add() {
-    println!("Executing ADD directive");
+fn execute_arg(instr: ArgInstruction) {
+    println!("  {:?}", instr);
 }
 
-fn execute_copy() {
-    println!("Executing COPY directive");
+fn execute_misc(instr: MiscInstruction) {
+    //TODO: handles: `MAINTAINER`, `EXPOSE`, `VOLUME`,
+        // `USER`, `WORKDIR`, `ONBUILD`, `STOPSIGNAL`, `HEALTHCHECK`, `SHELL`
+    println!("  {:?}", instr);
 }
 
-fn execute_entrypoint() {
-    println!("Executing ENTRYPOINT directive");
-}
+//fn execute_volume() {
+    //println!("Executing VOLUME directive");
+//}
 
-fn execute_volume() {
-    println!("Executing VOLUME directive");
-}
+//fn execute_user() {
+    //println!("Executing USER directive");
+//}
 
-fn execute_user() {
-    println!("Executing USER directive");
-}
+//fn execute_workdir() {
+    //println!("Executing WORKDIR directive");
+//}
 
-fn execute_workdir() {
-    println!("Executing WORKDIR directive");
-}
 
-fn execute_arg() {
-    println!("Executing ARG directive");
-}
+//fn execute_onbuild() {
+    //println!("Executing ONBUILD directive");
+//}
 
-fn execute_onbuild() {
-    println!("Executing ONBUILD directive");
-}
+//fn execute_stopsignal() {
+    //println!("Executing STOPSIGNAL directive");
+//}
 
-fn execute_stopsignal() {
-    println!("Executing STOPSIGNAL directive");
-}
+//fn execute_healthcheck() {
+    //println!("Executing HEALTHCHECK directive");
+//}
 
-fn execute_healthcheck() {
-    println!("Executing HEALTHCHECK directive");
-}
+//fn execute_shell() {
+    //println!("Executing SHELL directive");
+//}
 
-fn execute_shell() {
-    println!("Executing SHELL directive");
-}
-
-fn execute_maintainer() {
-    println!("Executing MAINTAINER directive");
-}
+//fn execute_maintainer() {
+    //println!("Executing MAINTAINER directive");
+//}
