@@ -5,25 +5,41 @@ use std::path::Path;
 use std::collections::HashMap;
 use dockerfile_parser::*;
 
+
+mod builder {
+    pub mod builder;
+}
+
+use builder::builder::*;
+
 fn main() {
 
 // TODO: check validity first
 let dockerfile = Dockerfile::parse(r#"
-FROM python:3
+FROM ruby:3.0
 
 WORKDIR /usr/src/app
 
 COPY . .
 
-CMD [ "python", "./your-script.py" ]
+CMD ["./your-script.rb"]
 "#).unwrap();
 
+//FROM python:3
+
+//WORKDIR /usr/src/app
+
+//COPY . .
+
+//CMD [ "python", "./your-script.py" ]
+
+
+
+let mut builder = Builder::new();
 for stage in dockerfile.iter_stages() {
-  println!("stage #{}", stage.index);
-  let mut builder = Builder::new();
   for ins in stage.instructions {
     match ins {
-        Instruction::From(instr) => execute_from(builder, instr.clone()),
+        Instruction::From(instr) => execute_from(&mut builder, instr.clone()),
         Instruction::Arg(instr) => execute_arg(instr.clone()),
         Instruction::Label(instr) => execute_label(instr.clone()),
         Instruction::Run(instr) => execute_run(instr.clone()),
@@ -33,61 +49,48 @@ for stage in dockerfile.iter_stages() {
         Instruction::Env(instr) => execute_env(instr.clone()),
         Instruction::Misc(instr) => execute_misc(instr.clone()),
     }
-    println!("  {:?}", ins);
-    println!("\n");
   }
 
-  builder.build();
+  builder.build(true);
 }
 
 }
 
-fn execute_from(builder: Builder, instr: FromInstruction) {
-    builder.config_base(instr.content);
+fn execute_from(builder: &mut Builder, instr: FromInstruction) {
+    builder.config_base(&instr.image.content);
 
-    println!("  {:?}", instr);
 }
 
 fn execute_run(instr: RunInstruction) {
-    println!("  {:?}", instr);
 }
 
 fn execute_cmd(instr: CmdInstruction) {
-    println!("  {:?}", instr);
 }
 
 fn execute_label(instr: LabelInstruction) {
-    println!("  {:?}", instr);
 }
 
 //fn execute_expose(instr: ExposeInstruction) {
-    //println!("  {:?}", instr);
 //}
 
 fn execute_env(instr: EnvInstruction) {
-    println!("  {:?}", instr);
 }
 
 //fn execute_add(instr: AddInstruction) {
-    //println!("  {:?}", instr);
 //}
 
 fn execute_copy(instr: CopyInstruction) {
-    println!("  {:?}", instr);
 }
 
 fn execute_entrypoint(instr: EntrypointInstruction) {
-    println!("  {:?}", instr);
 }
 
 fn execute_arg(instr: ArgInstruction) {
-    println!("  {:?}", instr);
 }
 
 fn execute_misc(instr: MiscInstruction) {
     //TODO: handles: `MAINTAINER`, `EXPOSE`, `VOLUME`,
         // `USER`, `WORKDIR`, `ONBUILD`, `STOPSIGNAL`, `HEALTHCHECK`, `SHELL`
-    println!("  {:?}", instr);
 }
 
 //fn execute_volume() {

@@ -1,21 +1,33 @@
+use std::fs;
+use std::io::{self, Read};
+use std::path::PathBuf;
+
+use std::env::current_dir;
+
 pub struct Builder {
-    // stateful repr of buildsteps
+    base_build: Vec<u8>,
 }
 
 impl Builder {
     pub fn new() -> Self {
         Builder {
+             base_build: Vec::new(),
         }
     }
 
     // FROM
-    pub fn config_base(&self, base: &str) {
+    pub fn config_base(&mut self, base: &str) {
+        // all .wasm builds are local for now,
+        // TODO: move to reg, cache locally
         match base {
             "scratch" => {
-                println!("Scratch Build Started...", base);
+                println!("Scratch Build Started...");
             },
             "ruby:3.0" => {
-                // check for local wasm build, else pull
+                println!("...Ruby Build Started...\n");
+                self.read_file("ruby.wasm");
+                println!("Ruby Base Image located \n");
+                let length = self.base_build.len();
             },
             "python:3" => {
             },
@@ -44,6 +56,18 @@ impl Builder {
     }
 
     pub fn build(&self, wasm_only: bool) {
-        // makes single executable: runtime, .wasm, args, OR just wasm + args
     }
+
+    fn read_file(&mut self, filename: &str) -> io::Result<()> {
+        let mut path = PathBuf::from("./base_builds");
+        path.push(filename);
+
+        let mut file = fs::File::open(path)?;
+        let mut contents = Vec::new();
+        file.read_to_end(&mut contents)?;
+
+        self.base_build = contents;
+        Ok(())
+    }
+
 }
