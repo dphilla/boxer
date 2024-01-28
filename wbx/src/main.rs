@@ -5,9 +5,9 @@ use std::path::Path;
 use std::collections::HashMap;
 use dockerfile_parser::*;
 
-
 mod builder {
     pub mod builder;
+    pub mod packer;
 }
 
 use builder::builder::*;

@@ -1,8 +1,8 @@
 use std::fs;
 use std::io::{self, Read};
 use std::path::PathBuf;
-
 use std::env::current_dir;
+use crate::builder::packer;
 
 pub struct Builder {
     base_build: Vec<u8>,
@@ -48,7 +48,19 @@ impl Builder {
     }
 
     // ADD, COPY
-    pub fn bundle_fs(&self) {
+    pub fn bundle_fs(&mut self, guest_dir: &str, host_dir: &str, output_file: &str) -> io::Result<()> {
+        // Map directories as needed
+        let map_dirs = vec![(PathBuf::from(guest_dir), PathBuf::from(host_dir))];
+
+        // Call the pack function from the packer module
+        let output_bytes = packer::pack(&self.base_build, map_dirs)
+            .map_err(|e| io::Error::new(io::ErrorKind::Other, e))?;
+
+        // Write the output bytes to the specified file
+        let output_path = PathBuf::from(output_file);
+        fs::write(output_path, output_bytes)?;
+
+        Ok(())
     }
 
     // COMMAND, RUN, ENTRYPOINT
@@ -69,5 +81,4 @@ impl Builder {
         self.base_build = contents;
         Ok(())
     }
-
 }

@@ -6,4 +6,8 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+anyhow = "1.0.40"
 dockerfile-parser = "0.8.0"
+wasm-encoder = "0.38.1"
+wasmparser = "0.106.0"
+wizer = "4.0.0"
