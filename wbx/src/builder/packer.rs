@@ -1,4 +1,4 @@
-// This code is based on the wasi-vfs cli: https://github.com/kateinoigakukun/wasi-vfs
+// This code is based on the wasi-vfs cli, with express permission: https://github.com/kateinoigakukun/wasi-vfs
 // Apache License Version 2.0, January 2004
 
 use std::path::PathBuf;
@@ -6,6 +6,7 @@ use anyhow::Result;
 
 pub fn pack(wasm_bytes: &[u8], map_dirs: Vec<(PathBuf, PathBuf)>) -> Result<Vec<u8>> {
     std::env::set_var("__WASI_VFS_PACKING", "1");
+
     let mut wizer = wizer::Wizer::new();
     wizer.allow_wasi(true)?;
     wizer.init_func("wasi_vfs_pack_fs");
