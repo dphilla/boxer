@@ -16,19 +16,17 @@ use builder::builder::*;
 
 fn main() {
     let dockerfile = Dockerfile::parse(r#"
-    FROM ruby:3.0
-
-    WORKDIR /usr/src/app
-
-    COPY . .
-
-    CMD ["./your-script.rb"]
+       FROM python:3
+       WORKDIR /usr/src/app
+       COPY . .
+       CMD [ "python", "./your-script.py" ]
     "#).unwrap();
 
-    //FROM python:3
+
+    //FROM ruby:3.0
     //WORKDIR /usr/src/app
     //COPY . .
-    //CMD [ "python", "./your-script.py" ]
+    //CMD ["./your-script.rb"]
 
     let mut builder = Builder::new();
     for stage in dockerfile.iter_stages() {
@@ -39,8 +37,8 @@ fn main() {
             Instruction::Label(instr) => execute_label(instr.clone()),
             Instruction::Run(instr) => execute_run(instr.clone()),
             Instruction::Entrypoint(instr) => execute_entrypoint(instr.clone()),
-            Instruction::Cmd(instr) => execute_cmd(instr.clone()),
             Instruction::Copy(instr) => execute_copy(&mut builder, instr.clone()),
+            Instruction::Cmd(instr) => execute_cmd(instr.clone()),
             Instruction::Env(instr) => execute_env(instr.clone()),
             Instruction::Misc(instr) => execute_misc(instr.clone()),
         }
@@ -64,10 +62,17 @@ fn execute_run(instr: RunInstruction) {
 }
 
 fn execute_cmd(instr: CmdInstruction) {
+    // start here:
+    // 1) python build
+    // 2) box build and box run
+    // 3) make box command
+    // 4) Web builder demo - build + run, download-able link for executable
+    //
     let wasm_file = "final_build.wasm";
-    let ruby_script = "src/my_app.rb";
+    //let script = "demo_src/my_app.rb";
+    let script = "src/my_app.py";
 
-    if let Err(e) = execute_wasm_with_wasmtime(wasm_file, ruby_script) {
+    if let Err(e) = execute_wasm_with_wasmtime(wasm_file, script) {
         eprintln!("Error executing WASM with Wasmtime: {}", e);
     }
 
@@ -93,7 +98,7 @@ fn execute_env(instr: EnvInstruction) {
 fn execute_copy(builder: &mut Builder, instr: CopyInstruction) {
     println!("Building + Bundling ruby, source code, and FS...\n this can take a *several* seconds...\n");
     //builder.bundle_fs("/usr", "./ruby-3.2-wasm32-unknown-wasi-full/usr", "final_build.wasm");
-    builder.bundle_fs("/src", "./src", "final_build.wasm");
+    builder.bundle_fs("/src", "./demo_src", "final_build.wasm");
 
     println!("Bundling Ruby, source code, and FS is complete!!\n");
     ()
@@ -128,7 +133,7 @@ use wasmtime::*;
 use std::path::PathBuf;
 use anyhow::Result;
 
-fn execute_wasm_with_wasmtime(wasm_file: &str, ruby_script: &str) -> Result<()> {
+fn execute_wasm_with_wasmtime(wasm_file: &str, script: &str) -> Result<()> {
     // todo:
     //let args = vec![PathBuf::from(ruby_script), PathBuf::from(ruby_script)];
     //let args: Vec<String> = args.iter().map(|arg| arg.to_string_lossy().into_owned()).collect();
@@ -144,7 +149,7 @@ fn execute_wasm_with_wasmtime(wasm_file: &str, ruby_script: &str) -> Result<()> 
 
     // shelling out for now, adjust to use as lib
     let command = "wasmtime";
-    let args = ["final_build.wasm", "--", "src/my_app.rb"];
+    let args = [wasm_file, "--", script];
 
     let output = Command::new(command)
         .args(&args)

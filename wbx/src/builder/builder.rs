@@ -30,6 +30,10 @@ impl Builder {
                 let length = self.base_build.len();
             },
             "python:3" => {
+                println!("...Python Build Started...\n");
+                self.read_file("python-3.12.0.wasm");
+                println!("Python Base Image located \n");
+                let length = self.base_build.len();
             },
             "alpine:latest" => {
             },
@@ -52,12 +56,13 @@ impl Builder {
         // generecize for actual vfs + wasi
         let map_dirs = vec![(PathBuf::from(guest_dir), PathBuf::from(host_dir))];
 
-
         let output_bytes = packer::pack(&self.base_build, map_dirs)
             .map_err(|e| io::Error::new(io::ErrorKind::Other, e))?;
 
+        println!("hi");
 
         let output_path = PathBuf::from(output_file);
+        //println!("{:#?}", output_path.display());
         fs::write(output_path, output_bytes)?;
 
         Ok(())
