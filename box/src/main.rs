@@ -21,35 +21,26 @@ enum BoxCli {
     #[structopt(name = "build")]
     /// Builds box from Dockerfile (-f) or OCI Image (-i)
     Build {
-        // Add any build-specific arguments here
+        #[structopt(short = "f", long = "file", parse(from_os_str))]
+        /// Dockerfile path
+        dockerfile_path: std::path::PathBuf,
     },
     #[structopt(name = "run")]
     /// Runs a built box; if no name given, defaults to last built box
     Run {
-        // Add any run-specific arguments here
+        // add args to pass runtime, etc
     },
 }
 
 fn main() {
     let opt = BoxCli::from_args();
 
-    let dockerfile = Dockerfile::parse(r#"
-       FROM python:3
-       WORKDIR /usr/src/app
-       COPY . .
-       CMD [ "python", "./your-script.py" ]
-    "#).unwrap();
-
-
-    //FROM ruby:3.0
-    //WORKDIR /usr/src/app
-    //COPY . .
-    //CMD ["./your-script.rb"]
-
     let mut builder = Builder::new();
     match opt {
-        BoxCli::Build { /* ... */ } => {
-            for stage in dockerfile.iter_stages() {
+        BoxCli::Build { dockerfile_path } => {
+            let dockerfile_content = std::fs::read_to_string(dockerfile_path);
+            let dockerfile = Dockerfile::parse(&dockerfile_content.unwrap());
+            for stage in dockerfile.expect("Error").iter_stages() {
               for ins in stage.instructions {
                 match ins {
                     Instruction::From(instr) => execute_from(&mut builder, instr.clone()),
@@ -79,42 +70,6 @@ fn main() {
     }
 }
 
-
-//fn main() {
-    //let dockerfile = Dockerfile::parse(r#"
-       //FROM python:3
-       //WORKDIR /usr/src/app
-       //COPY . .
-       //CMD [ "python", "./your-script.py" ]
-    //"#).unwrap();
-
-
-//    //FROM ruby:3.0
- //   //WORKDIR /usr/src/app
-  //  //COPY . .
-   // //CMD ["./your-script.rb"]
-
-    //let mut builder = Builder::new();
-    //for stage in dockerfile.iter_stages() {
-      //for ins in stage.instructions {
-        //match ins {
-            //Instruction::From(instr) => execute_from(&mut builder, instr.clone()),
-            //Instruction::Arg(instr) => execute_arg(instr.clone()),
-            //Instruction::Label(instr) => execute_label(instr.clone()),
-            //Instruction::Run(instr) => execute_run(instr.clone()),
-            //Instruction::Entrypoint(instr) => execute_entrypoint(instr.clone()),
-            //Instruction::Copy(instr) => execute_copy(&mut builder, instr.clone()),
-            //Instruction::Cmd(instr) => execute_cmd(instr.clone()),
-            //Instruction::Env(instr) => execute_env(instr.clone()),
-            //Instruction::Misc(instr) => execute_misc(instr.clone()),
-        //}
-      //}
-
-      //builder.build(true);
-    //}
-
-//}
-
 fn execute_from(builder: &mut Builder, instr: FromInstruction) {
     builder.config_base(&instr.image.content);
 }
@@ -128,7 +83,6 @@ fn execute_run(instr: RunInstruction) {
 }
 
 fn execute_cmd(instr: CmdInstruction) {
-
     println!("Execution complete!");
 }
 
