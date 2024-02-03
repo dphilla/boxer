@@ -6,12 +6,14 @@ use crate::builder::packer;
 
 pub struct Builder {
     base_build: Vec<u8>,
+    pub working_directory: PathBuf,
 }
 
 impl Builder {
     pub fn new() -> Self {
         Builder {
              base_build: Vec::new(),
+             working_directory: PathBuf::from("/")
         }
     }
 
@@ -59,8 +61,6 @@ impl Builder {
         let output_bytes = packer::pack(&self.base_build, map_dirs)
             .map_err(|e| io::Error::new(io::ErrorKind::Other, e))?;
 
-        println!("hi");
-
         let output_path = PathBuf::from(output_file);
         //println!("{:#?}", output_path.display());
         fs::write(output_path, output_bytes)?;
@@ -79,6 +79,10 @@ impl Builder {
 
         // future: bindings to drop in a js , or a node env, etc., could
         // interface with signatures.
+    }
+
+    pub fn set_working_directory(&mut self, dir: PathBuf) {
+        self.working_directory = dir;
     }
 
     fn read_file(&mut self, filename: &str) -> io::Result<()> {
