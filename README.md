@@ -8,6 +8,8 @@
   </p>
 </p>
 
+**This project is experimental and under rapid development. Not yet for production use (but will be soon) - use at own risk**
+
 # WasmBoxer
 
 ## Overview
