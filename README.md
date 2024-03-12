@@ -1,4 +1,4 @@
-# WasmBoxer
+# Boxer
 
 <p align="center">
   <p align="center">
@@ -10,16 +10,16 @@
 
 **This project is experimental and under rapid development. Not yet for production use (but will be soon) - use at own risk**
 
-# WasmBoxer
+# Boxer
 
 ## Overview
-WasmBoxer is an open-source project designed to reimagine cloud computing by transitioning from traditional container technology to WebAssembly (Wasm) based distributions, known as "Boxes" or "Wasm-Boxes".
+Boxer is an open-source project designed to reimagine cloud computing by transitioning from traditional container technology to WebAssembly (Wasm) based distributions, known as "Boxes" or "Wasm-Boxes".
 
 ## Motivation
 While containers have been a cornerstone of cloud computing, providing isolated environments for applications, they come with significant drawbacks. They often result in larger, less efficient deployments with slower startup times and rely heavily on the underlying operating system/kernel for security, which can introduce vulnerabilities and platform lock-in.
 
-## Solution: WasmBoxer
-WasmBoxer offers a new solution by providing tooling for converting existing containerized workloads and definitions into near-universally deployable Wasm distributions. These "Boxes" offer environments comparable to those provided by containers but are vastly more efficient thanks to the lightweight, sandboxed execution capabilities of WebAssembly.
+## Solution: Boxer
+Boxer offers a new solution by providing tooling for converting existing containerized workloads and definitions into near-universally deployable Wasm distributions. These "Boxes" offer environments comparable to those provided by containers but are vastly more efficient thanks to the lightweight, sandboxed execution capabilities of WebAssembly.
 
 <p align="center">
   <p align="center">
