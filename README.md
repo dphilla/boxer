@@ -50,6 +50,6 @@ WORKDIR /app
 CMD ["/app/a.out"]
 ```
 
-run  `wbx build -f Dockerfile`
+run  `box build -f Dockerfile`
 
 This will bring in libc interaces (as imports) and create the necessary FS state, thus declaritivey creating a ready-to-run Wasm binary.

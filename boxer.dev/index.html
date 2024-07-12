@@ -1,0 +1,47 @@
+<h1 align="center" id="wasmboxer">Boxer</h1>
+<div align="center">
+<iframe src="https://ghbtns.com/github-btn.html?user=dphilla&repo=boxer&type=star&count=true&size=large" frameborder="0" scrolling="0" width="125" height="30" title="GitHub"></iframe>
+</div>
+
+<p align="center">
+  <p align="center">
+    <a href="https://en.wikipedia.org/wiki/Mia_St._John" target="_blank">
+      <img src="https://user-images.githubusercontent.com/20820229/164059786-8d082b44-59d6-431a-adf4-993116c8d492.png" alt="Mia St John" width="300"             height="400">
+    </a>
+  </p>
+</p>
+
+<h1 id="wasmboxer">Boxer</h1>
+<h2 id="overview">Overview</h2>
+<p>Boxer is an open-source project designed to reimagine cloud computing by transitioning from traditional container technology to WebAssembly (Wasm) based distributions, known as &quot;Boxes&quot; or &quot;Wasm-Boxes&quot;.</p>
+<h2 id="motivation">Motivation</h2>
+<p>While containers have been a cornerstone of cloud computing, providing isolated environments for applications, they come with significant drawbacks. They often result in larger, less efficient deployments with slower startup times and rely heavily on the underlying operating system/kernel for security, which can introduce vulnerabilities and platform lock-in.</p>
+<h2 id="solution-wasmboxer">Solution: Boxer</h2>
+<p>Boxer (A.K.A "boxer") offers a new solution by providing tooling for converting existing containerized workloads and definitions into near-universally deployable Wasm distributions. These &quot;Boxes&quot; offer environments comparable to those provided by containers but are vastly more efficient thanks to the lightweight, sandboxed execution capabilities of WebAssembly.</p>
+<p align="center">
+  <p align="center">
+    <a href="https://boxer.dev" target="_blank">
+      <img src="https://github.com/dphilla/wasm-vfs/assets/20820229/4b0309d8-c8ae-427a-8af3-67857a8eebf3" alt="Container and Box" width="400"             height="400">
+    </a>
+  </p>
+</p>
+
+
+<h3 id="key-advantages-of-webassembly-">Key Advantages of WebAssembly:</h3>
+<ul>
+<li><strong>Reduced Overhead:</strong> Wasm&#39;s compact binary instruction format ensures lightweight execution, drastically cutting down the overhead seen in traditional containers.</li>
+<li><strong>Enhanced Performance:</strong> The efficiency of Wasm leads to improved performance and smaller, more efficient deployments, perfectly suited for cloud computing.</li>
+<li><strong>Superior Security:</strong> Wasm&#39;s memory-safe, isolated execution environment provides a higher level of security, independent of the operating system.</li>
+<li><strong>Run (almost) Everywhere</strong> Wasm can run a anywhere there is a WebAssembly runtime, including browsers, servers, and embedded devices; existing runtimes are available on for a <a href="https://github.com/appcypher/awesome-wasm-runtimes">wide variety of architectures.</a></li>
+</ul>
+<h2 id="example">Example</h2>
+<h3 id="dockerfile-wasm-binary">Dockerfile -&gt; Wasm Binary</h3>
+<p>For for this file:</p>
+<pre><code class="lang-Dockerfile"><span class="hljs-keyword">FROM</span> ubuntu:latest
+<span class="hljs-keyword">RUN</span><span class="bash"> mkdir -p /app
+</span><span class="hljs-keyword">COPY</span><span class="bash"> a.out /app
+</span><span class="hljs-keyword">WORKDIR</span><span class="bash"> /app
+</span><span class="hljs-keyword">CMD</span><span class="bash"> [<span class="hljs-string">"/app/a.out"</span>]</span>
+</code></pre>
+<p>run  <code>box build -f Dockerfile</code></p>
+<p>This will bring in libc interaces (as imports) and create the necessary FS state, thus declaritivey creating a ready-to-run Wasm binary.</p>
