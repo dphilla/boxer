@@ -1,16 +1,9 @@
-#puts 'Hello'
+#counter = 1
 
-# Initialize the counter
-counter = 1
+#100.times do
+  #square = counter ** 2
+  #puts "Iteration #{counter}: #{counter} squared is #{square}"
+  #counter += 1
+#end
 
-# Loop 100 times
-100.times do
-  # Perform a math operation, e.g., squaring the counter
-  square = counter ** 2
-
-  # Print the result
-  puts "Iteration #{counter}: #{counter} squared is #{square}"
-
-  # Increment the counter
-  counter += 1
-end
+puts "Hello, Wasm"

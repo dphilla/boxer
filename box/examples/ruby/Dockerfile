@@ -2,6 +2,6 @@ FROM ruby:3.0
 
 WORKDIR /usr/src/app
 
-COPY . .
+COPY ./box/demo_src/ .
 
-CMD ["./script.rb"]
+CMD ["./my_app.rb"]
