@@ -4,35 +4,55 @@
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Document</title>
+    <title>Boxer-Python</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>Boxer - Deploy a Python App Now</h1>
-    <div class="github-btn">
+    <div class="header">
+        <div class="brand">
+            <h3>Boxer</h3>
+            <img src="img/boxer.png" alt="boxer logo" class="boxerLogo">
+        </div>
+        <h1>
+            Deploy a Python App Now
+        </h1>
         <iframe
             src="https://ghbtns.com/github-btn.html?user=dphilla&amp;repo=boxer&amp;type=star&amp;count=true&amp;size=large"
             frameborder="0" scrolling="0" width="125" height="30" title="GitHub"></iframe>
     </div>
     <div class="container">
-        <div class="code">
-            <div class="github-input">
-                <input type="text" id="repoUrl" placeholder="Enter GitHub repo URL">
-                <button id="fetchFiles">Fetch Files</button>
-                <ul id="fileList"></ul>
-            </div>
-            (Dockerfile)
-            <textarea>
-                FROM python:3
-                WORKDIR /usr/src/app
-                COPY . .
-                CMD [ "python", "./script.py" ]
-            </textarea>
-            <button id="deployButton" class="button">Deploy!</button>
+        <div class="repo">
+            <input type="text" id="repoUrl" placeholder="Enter GitHub repo URL">
+            <button id="fetchFiles">Fetch Files</button>
+            </input>
         </div>
-
+        <div class="subContainer">
+            <div class="docker">
+                <h3>Dockerfile</h3>
+                <div class="dockerFile">
+                    <div class="dockerLang">
+                        <button type="button" class="codeLang" onclick="dockerfileLang('python')"><img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                                height="40" alt="python logo" /></button>
+                        <button type="button" class="codeLang" onclick="dockerfileLang('ruby')"><img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ruby/ruby-original.svg"
+                                height="40" alt="ruby logo" /></button>
+                        <button type="button" class="codeLang" onclick="dockerfileLang('c')"><img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" height="40"
+                                alt="ruby logo" /></button>
+                    </div>
+                    <textarea id="dockerText" class="dockerText"
+                        placeholder="Enter your own Dockerfile code, or select a language icon."></textarea>
+                </div>
+            </div>
+            <div class="codebase">
+                <ul class="fileList" id="fileList">
+                </ul>
+            </div>
+        </div>
+        <button id="deployButton" class="button">Deploy!</button>
         <!-- <div class="image">
             <a href="/" target="_blank">
                 <img src="https://user-images.githubusercontent.com/20820229/164059786-8d082b44-59d6-431a-adf4-993116c8d492.png"

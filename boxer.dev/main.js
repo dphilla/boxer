@@ -37,3 +37,18 @@ document.getElementById('fetchFiles').onclick = async function () {
 document.getElementById('deployButton').onclick = function () {
     window.location.href = 'https://boxer.dev';
 };
+
+
+const dockerfileLang = (language) => {
+    switch (true) {
+        case (language === 'python'):
+            document.getElementById('dockerText').value = "# From Dockers official Python image: https://hub.docker.com/_/python\n\nFROM python:3\n\nWORKDIR /usr/src/app\n\nCOPY requirements.txt ./\nRUN pip install --no-cache-dir -r requirements.txt\n\nCOPY . .\n\nCMD [ 'python', './your-daemon-or-script.py' ]\n";
+            break;
+        case (language === 'ruby'):
+            document.getElementById('dockerText').value = "# From Dockers official Ruby image: https://hub.docker.com/_/ruby\n\nFROM ruby:3.3\n\n# Throw errors if Gemfile has been modified since Gemfile.lock\nRUN bundle config --global frozen 1\n\nWORKDIR /usr/src/app\n\nCOPY Gemfile Gemfile.lock ./\nRUN bundle install\n\nCOPY . .\n\nCMD [ './your-daemon-or-script.rb' ]\n";
+            break;
+        default:
+            document.getElementById('dockerText').value = "# From Dockers official GCC image: https://hub.docker.com/_/gcc\n\nFROM gcc:4.9\nCOPY . /usr/src/myapp\nWORKDIR /usr/src/myapp\nRUN gcc -o myapp main.c\nCMD ['./myapp']\n";
+
+    }
+};
