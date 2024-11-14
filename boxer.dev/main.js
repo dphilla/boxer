@@ -1,5 +1,20 @@
 document.getElementById('fetchFiles').onclick = async function () {
     const repoUrl = document.getElementById('repoUrl').value;
+    gitHubFiles(repoUrl);
+};
+
+document.getElementById('repoUrl').addEventListener('keydown', async function (e) {
+    if (e.key === 'Enter') {
+        const repoUrl = document.getElementById('repoUrl').value;
+        gitHubFiles(repoUrl);
+    }
+});
+
+document.getElementById('deployButton').onclick = function () {
+    window.location.href = 'https://boxer.dev';
+};
+
+const gitHubFiles = async (repoUrl) => {
     const fileListElement = document.getElementById('fileList');
     fileListElement.innerHTML = '';
 
@@ -33,11 +48,6 @@ document.getElementById('fetchFiles').onclick = async function () {
         alert('Failed to fetch repository contents: ' + error.message);
     }
 };
-
-document.getElementById('deployButton').onclick = function () {
-    window.location.href = 'https://boxer.dev';
-};
-
 
 const dockerfileLang = (language) => {
     switch (true) {

@@ -5,6 +5,10 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+::placeholder {
+    color: white;
+}
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -30,13 +34,46 @@
 }
 
 .repo {
-    width: 100vw;
+    width: 60vw;
     height: 20vh;
     margin-bottom: 20px;
     display: flex;
+    align-self: center;
     justify-content: center;
     align-items: center;
-    outline: solid purple 1px;
+    gap: 10px;
+}
+
+.repoWrapper {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    border: 2px solid black;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.repoUrl {
+    border: hidden;
+    background-color: transparent;
+    flex: 1;
+    font-size: 15px;
+    color: white;
+}
+
+input.repoUrl:focus {
+    outline: none;
+}
+
+
+#fetchFiles {
+    border: hidden;
+    background-color: transparent;
+    font-size: 30px;
+}
+
+#fetchFiles:hover {
+    cursor: pointer;
 }
 
 .subContainer {
@@ -49,11 +86,12 @@
 .codebase {
     width: 50vw;
     display: flex;
-    padding: 10px 0px 10px 0px;
+    height: 300px;
+    padding: 15px 0px 15px 0px;
 }
 
 .fileList {
-    column-width: 100px;
+    column-width: 150px;
 }
 
 ul {
@@ -78,7 +116,24 @@ ul {
 .dockerText {
     width: 550px;
     height: 400px;
+    background: transparent;
+    border: 2px solid black;
+    border-radius: 10px;
+    color: white;
+    padding: 10px;
+    font-size: 15px;
+}
 
+textarea.dockerText:focus {
+    outline: none;
+    transform: scale(1.01);
+}
+
+
+.textBox {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .dockerLang {
@@ -90,6 +145,75 @@ ul {
 .codeLang {
     border: hidden;
     background-color: transparent;
+}
+
+
+#deployButton {
+    align-items: center;
+    align-self: center;
+    appearance: none;
+    background-color: #FCFCFD;
+    border-radius: 4px;
+    border-width: 0;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #36395A;
+    display: inline-flex;
+    height: 48px;
+    justify-content: center;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition: box-shadow .15s, transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow, transform;
+    font-size: 18px;
+    width: 100px;
+}
+
+#deployButton:focus {
+    box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+}
+
+#deployButton:hover {
+    box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    transform: translateY(-2px);
+    cursor: pointer;
+}
+
+#deployButton:active {
+    box-shadow: #D6D6E7 0 3px 7px inset;
+    transform: translateY(2px);
+}
+
+a {
+    color: white;
+    position: relative;
+    text-decoration: none;
+}
+
+a::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    border-radius: 4px;
+    background-color: white;
+    bottom: 0;
+    left: 0;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .3s ease-in-out;
+}
+
+a:hover::before {
+    transform-origin: left;
+    transform: scaleX(1);
 }
 
 @media (max-width: 600px) {

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body style="background-color: slategray;">
     <div class="header">
         <div class="brand">
             <h3>Boxer</h3>
@@ -24,9 +24,11 @@
     </div>
     <div class="container">
         <div class="repo">
-            <input type="text" id="repoUrl" placeholder="Enter GitHub repo URL">
-            <button id="fetchFiles">Fetch Files</button>
-            </input>
+            <div class="repoWrapper">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" height="20">
+                <input type="text" id="repoUrl" class="repoUrl" placeholder="Enter GitHub repo URL">
+                <button id="fetchFiles">&#11166</button>
+            </div>
         </div>
         <div class="subContainer">
             <div class="docker">
@@ -43,8 +45,11 @@
                                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" height="40"
                                 alt="ruby logo" /></button>
                     </div>
-                    <textarea id="dockerText" class="dockerText"
-                        placeholder="Enter your own Dockerfile code, or select a language icon."></textarea>
+                    <div class="textBox">
+                        <textarea id="dockerText" class="dockerText"
+                            placeholder="Enter your own Dockerfile code, or select a language icon."></textarea>
+                        <button id="deployButton" class="button">Deploy!</button>
+                    </div>
                 </div>
             </div>
             <div class="codebase">
@@ -52,17 +57,19 @@
                 </ul>
             </div>
         </div>
-        <button id="deployButton" class="button">Deploy!</button>
-        <!-- <div class="image">
+    </div>
+    <!-- <div class="image">
             <a href="/" target="_blank">
                 <img src="https://user-images.githubusercontent.com/20820229/164059786-8d082b44-59d6-431a-adf4-993116c8d492.png"
                     alt="Placeholder Image">
             </a>
             <img src="https://user-images.githubusercontent.com/20820229/164059786-8d082b44-59d6-431a-adf4-993116c8d492.png" alt="Mia St John" width="300" height="400">
         </div> -->
-    </div>
 
     <script src="main.js"></script>
 </body>
 
 </html>
+
+<!-- HTML !-->
+<button class="button-29" role="button">Button 29</button>
