@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body style="background-color: slategray;">
+<body>
     <div class="header">
         <div class="brand">
             <h3>Boxer</h3>
@@ -18,43 +18,48 @@
         <h1>
             Deploy a Python App Now
         </h1>
-        <iframe
-            src="https://ghbtns.com/github-btn.html?user=dphilla&amp;repo=boxer&amp;type=star&amp;count=true&amp;size=large"
-            frameborder="0" scrolling="0" width="125" height="30" title="GitHub"></iframe>
+        <div>
+            <iframe
+                src="https://ghbtns.com/github-btn.html?user=dphilla&amp;repo=boxer&amp;type=star&amp;count=true&amp;size=large"
+                frameborder="0" scrolling="0" width="125" height="30" title="GitHub"></iframe>
+        </div>
     </div>
     <div class="container">
         <div class="repo">
             <div class="repoWrapper">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" height="20">
+                <img src="img/github-dark.png" height="20">
                 <input type="text" id="repoUrl" class="repoUrl" placeholder="Enter GitHub repo URL">
-                <button id="fetchFiles">&#11166</button>
+                <button id="fetchFiles" class="button">Fetch</button>
             </div>
         </div>
         <div class="subContainer">
+            <div class="githubCode">
+                <h3>Github Files:</h3>
+                <div class="codebase">
+                    <ul class="fileList" id="fileList">
+                    </ul>
+                </div>
+            </div>
             <div class="docker">
-                <h3>Dockerfile</h3>
                 <div class="dockerFile">
-                    <div class="dockerLang">
-                        <button type="button" class="codeLang" onclick="dockerfileLang('python')"><img
-                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
-                                height="40" alt="python logo" /></button>
-                        <button type="button" class="codeLang" onclick="dockerfileLang('ruby')"><img
-                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ruby/ruby-original.svg"
-                                height="40" alt="ruby logo" /></button>
-                        <button type="button" class="codeLang" onclick="dockerfileLang('c')"><img
-                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" height="40"
-                                alt="ruby logo" /></button>
-                    </div>
                     <div class="textBox">
+                        <h3>Dockerfile:</h3>
                         <textarea id="dockerText" class="dockerText"
                             placeholder="Enter your own Dockerfile code, or select a language icon."></textarea>
                         <button id="deployButton" class="button">Deploy!</button>
                     </div>
                 </div>
-            </div>
-            <div class="codebase">
-                <ul class="fileList" id="fileList">
-                </ul>
+                <div class="dockerLang">
+                    <button type="button" class="codeLang" onclick="dockerfileLang('python')"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                            height="40" alt="python logo" /></button>
+                    <button type="button" class="codeLang" onclick="dockerfileLang('ruby')"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ruby/ruby-original.svg" height="40"
+                            alt="ruby logo" /></button>
+                    <button type="button" class="codeLang" onclick="dockerfileLang('c')"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" height="40"
+                            alt="ruby logo" /></button>
+                </div>
             </div>
         </div>
     </div>
@@ -70,6 +75,3 @@
 </body>
 
 </html>
-
-<!-- HTML !-->
-<button class="button-29" role="button">Button 29</button>

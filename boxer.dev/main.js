@@ -10,9 +10,9 @@ document.getElementById('repoUrl').addEventListener('keydown', async function (e
     }
 });
 
-document.getElementById('deployButton').onclick = function () {
-    window.location.href = 'https://boxer.dev';
-};
+// document.getElementById('deployButton').onclick = function () {
+//     window.location.href = 'https://boxer.dev';
+// };
 
 const gitHubFiles = async (repoUrl) => {
     const fileListElement = document.getElementById('fileList');

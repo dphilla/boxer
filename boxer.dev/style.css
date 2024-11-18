@@ -3,17 +3,20 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
 }
 
-::placeholder {
-    color: white;
+
+body {
+    background-image: url("img/boxer-bg-dark.png");
+    overflow: hidden;
 }
 
 .header {
     display: flex;
     justify-content: space-between;
     padding: 10px;
-    margin-bottom: 20px;
+    margin: 20px;
 }
 
 .brand {
@@ -25,6 +28,8 @@
     height: 75px;
     width: 50px;
 }
+
+
 
 .container {
     height: 90vh;
@@ -48,7 +53,7 @@
     width: 60%;
     display: flex;
     align-items: center;
-    border: 2px solid black;
+    border: 1px solid white;
     padding: 10px;
     border-radius: 10px;
 }
@@ -57,8 +62,7 @@
     border: hidden;
     background-color: transparent;
     flex: 1;
-    font-size: 15px;
-    color: white;
+    font-size: 20px;
 }
 
 input.repoUrl:focus {
@@ -67,14 +71,9 @@ input.repoUrl:focus {
 
 
 #fetchFiles {
-    border: hidden;
-    background-color: transparent;
-    font-size: 30px;
+    height: 30px;
 }
 
-#fetchFiles:hover {
-    cursor: pointer;
-}
 
 .subContainer {
     width: 100vw;
@@ -83,32 +82,59 @@ input.repoUrl:focus {
 
 }
 
+.githubCode {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .codebase {
     width: 50vw;
     display: flex;
-    height: 300px;
+    justify-content: center;
+    height: 400px;
     padding: 15px 0px 15px 0px;
 }
 
 .fileList {
-    column-width: 150px;
+    column-width: 115px;
 }
 
 ul {
     list-style: none;
 }
 
+a {
+    position: relative;
+    text-decoration: none;
+}
+
+a::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: white;
+    bottom: 0;
+    left: 0;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .3s ease-in-out;
+}
+
+a:hover::before {
+    transform-origin: left;
+    transform: scaleX(1);
+}
+
 .docker {
     width: 50vw;
     display: flex;
-    flex-direction: column;
     align-items: center;
 }
 
 .dockerFile {
-    width: 50vw;
     display: flex;
-    justify-content: center;
     padding: 0px 10px 0px 0px;
     gap: 20px;
 }
@@ -117,23 +143,22 @@ ul {
     width: 550px;
     height: 400px;
     background: transparent;
-    border: 2px solid black;
+    border: 1px solid white;
     border-radius: 10px;
-    color: white;
     padding: 10px;
     font-size: 15px;
 }
 
 textarea.dockerText:focus {
     outline: none;
-    transform: scale(1.01);
+    border: 2px solid white;
 }
-
 
 .textBox {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    align-items: center;
+    gap: 10px;
 }
 
 .dockerLang {
@@ -148,10 +173,9 @@ textarea.dockerText:focus {
 }
 
 
-#deployButton {
+.button {
     align-items: center;
     align-self: center;
-    appearance: none;
     background-color: #FCFCFD;
     border-radius: 4px;
     border-width: 0;
@@ -163,9 +187,6 @@ textarea.dockerText:focus {
     justify-content: center;
     padding-left: 16px;
     padding-right: 16px;
-    position: relative;
-    text-align: left;
-    text-decoration: none;
     transition: box-shadow .15s, transform .15s;
     user-select: none;
     -webkit-user-select: none;
@@ -173,48 +194,22 @@ textarea.dockerText:focus {
     white-space: nowrap;
     will-change: box-shadow, transform;
     font-size: 18px;
-    width: 100px;
 }
 
-#deployButton:focus {
+.button:focus {
     box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
 }
 
-#deployButton:hover {
-    box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+.button:hover {
     transform: translateY(-2px);
     cursor: pointer;
 }
 
-#deployButton:active {
+.button:active {
     box-shadow: #D6D6E7 0 3px 7px inset;
     transform: translateY(2px);
 }
 
-a {
-    color: white;
-    position: relative;
-    text-decoration: none;
-}
-
-a::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 4px;
-    border-radius: 4px;
-    background-color: white;
-    bottom: 0;
-    left: 0;
-    transform-origin: right;
-    transform: scaleX(0);
-    transition: transform .3s ease-in-out;
-}
-
-a:hover::before {
-    transform-origin: left;
-    transform: scaleX(1);
-}
 
 @media (max-width: 600px) {
     .container {
