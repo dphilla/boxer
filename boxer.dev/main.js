@@ -10,6 +10,16 @@ document.getElementById('repoUrl').addEventListener('keydown', async function (e
     }
 });
 
+document.getElementById('view-mode').addEventListener("click", () => {
+    document.body.classList.toggle('dark-mode');
+    if (document.getElementById('view-mode').checked) {
+        document.getElementById('github-icon').src = "img/github-dark.png";
+    } else {
+        document.getElementById('github-icon').src = "img/github-light.png";
+
+    }
+});
+
 // document.getElementById('deployButton').onclick = function () {
 //     window.location.href = 'https://boxer.dev';
 // };
@@ -62,3 +72,4 @@ const dockerfileLang = (language) => {
 
     }
 };
+

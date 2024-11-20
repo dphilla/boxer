@@ -19,6 +19,13 @@
             Deploy a Python App Now
         </h1>
         <div>
+            <div>
+                <p>Light/Dark</p>
+                <label class="mode-switch">
+                    <input id="view-mode" type="checkbox" />
+                    <span class="slider"></span>
+                </label>
+            </div>
             <iframe
                 src="https://ghbtns.com/github-btn.html?user=dphilla&amp;repo=boxer&amp;type=star&amp;count=true&amp;size=large"
                 frameborder="0" scrolling="0" width="125" height="30" title="GitHub"></iframe>
@@ -27,7 +34,7 @@
     <div class="container">
         <div class="repo">
             <div class="repoWrapper">
-                <img src="img/github-dark.png" height="20">
+                <img src="img/github-light.png" height="20" id="github-icon">
                 <input type="text" id="repoUrl" class="repoUrl" placeholder="Enter GitHub repo URL">
                 <button id="fetchFiles" class="button">Fetch</button>
             </div>
