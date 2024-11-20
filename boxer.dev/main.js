@@ -1,3 +1,11 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const modePreference = window.matchMedia("(prefers-color-scheme: dark");
+    if (modePreference.matches) {
+        document.getElementById('view-mode').checked = true;
+        viewMode();
+    }
+});
+
 document.getElementById('fetchFiles').onclick = async function () {
     const repoUrl = document.getElementById('repoUrl').value;
     gitHubFiles(repoUrl);
@@ -11,13 +19,7 @@ document.getElementById('repoUrl').addEventListener('keydown', async function (e
 });
 
 document.getElementById('view-mode').addEventListener("click", () => {
-    document.body.classList.toggle('dark-mode');
-    if (document.getElementById('view-mode').checked) {
-        document.getElementById('github-icon').src = "img/github-dark.png";
-    } else {
-        document.getElementById('github-icon').src = "img/github-light.png";
-
-    }
+    viewMode();
 });
 
 // document.getElementById('deployButton').onclick = function () {
@@ -73,3 +75,11 @@ const dockerfileLang = (language) => {
     }
 };
 
+const viewMode = () => {
+    document.body.classList.toggle('dark-mode');
+    if (document.getElementById('view-mode').checked) {
+        document.getElementById('github-icon').src = "img/github-dark.png";
+    } else {
+        document.getElementById('github-icon').src = "img/github-light.png";
+    }
+};
