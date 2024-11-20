@@ -8,6 +8,7 @@
 
 :root {
     --bg-img: url("img/boxer-bg-light.png");
+    --bg-img-mobile: url("img/boxer-bg-light-mobile.png");
     --text-color: black;
     --text-box: linear-gradient(lightgrey, lightgrey) padding-box,
         linear-gradient(white, #9ef4ff) border-box;
@@ -19,6 +20,7 @@
 
 .dark-mode {
     --bg-img: url("img/boxer-bg-dark.png");
+    --bg-img-mobile: url("img/boxer-bg-dark-mobile.png");
     --text-color: white;
     --text-box: linear-gradient(#0d1017, #0d1017) padding-box,
         linear-gradient(#0d1017, rebeccapurple) border-box;
@@ -281,18 +283,54 @@ textarea.dockerText:focus {
 
 
 @media (max-width: 600px) {
-    .container {
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        overflow: scroll;
+        background-image: var(--bg-img-mobile);
+    }
+
+    .header {
+        display: flex;
         flex-direction: column;
-        padding-top: 300px;
+        align-items: center;
     }
 
-    h1 {
-        margin-top: 10%;
-        margin-left: 3%;
+    .container {
+        display: flex;
+        flex-direction: column;
     }
 
-    .code textarea {
-        height: 50vh;
+    .subContainer {
+        display: flex;
+        flex-direction: column;
     }
 
+    .repoWrapper {
+        width: 100vw;
+        display: flex;
+    }
+
+    .docker {
+        width: 100vw;
+        display: flex;
+        flex-direction: column-reverse;
+
+    }
+
+    .dockerText {
+        width: 80vw;
+        height: 300px;
+        resize: none;
+    }
+
+    .dockerLang {
+        display: flex;
+        flex-direction: row;
+    }
 }
