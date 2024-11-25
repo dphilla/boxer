@@ -22,9 +22,18 @@ document.getElementById('view-mode').addEventListener("click", () => {
     viewMode();
 });
 
-// document.getElementById('deployButton').onclick = function () {
-//     window.location.href = 'https://boxer.dev';
-// };
+let terminal;
+
+document.getElementById('deployButton').onclick = function () {
+    document.getElementById('dashboard').style.display = "none";
+    terminal = new Terminal();
+    terminal.open(document.getElementById('terminal'));
+};
+
+document.getElementById('returnButton').onclick = function () {
+    document.getElementById('dashboard').style.display = "block";
+    terminal.dispose();
+};
 
 const gitHubFiles = async (repoUrl) => {
     const fileListElement = document.getElementById('fileList');
@@ -76,10 +85,13 @@ const dockerfileLang = (language) => {
 };
 
 const viewMode = () => {
-    document.body.classList.toggle('dark-mode');
     if (document.getElementById('view-mode').checked) {
+        document.body.classList.remove('light-mode');
+        document.body.classList.add('dark-mode');
         document.getElementById('github-icon').src = "img/github-dark.png";
     } else {
+        document.body.classList.remove('dark-mode');
+        document.body.classList.add('light-mode');
         document.getElementById('github-icon').src = "img/github-light.png";
     }
 };

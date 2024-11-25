@@ -7,70 +7,79 @@
     <title>Boxer-Python</title>
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm/css/xterm.css">
 </head>
 
 <body>
-    <div class="header">
-        <div class="brand">
-            <h3>Boxer</h3>
-            <img src="img/boxer.png" alt="boxer logo" class="boxerLogo">
-        </div>
-        <h1>
-            Deploy a Python App Now
-        </h1>
-        <div>
+    <div id="dashboard">
+        <div class="header">
+            <div class="brand">
+                <h3>Boxer</h3>
+                <img src="img/boxer.png" alt="boxer logo" class="boxerLogo">
+            </div>
+            <h1>
+                Deploy a Python App Now
+            </h1>
             <div>
-                <p>Light/Dark</p>
-                <label class="mode-switch">
-                    <input id="view-mode" type="checkbox" />
-                    <span class="slider"></span>
-                </label>
-            </div>
-            <iframe
-                src="https://ghbtns.com/github-btn.html?user=dphilla&amp;repo=boxer&amp;type=star&amp;count=true&amp;size=large"
-                frameborder="0" scrolling="0" width="125" height="30" title="GitHub"></iframe>
-        </div>
-    </div>
-    <div class="container">
-        <div class="repo">
-            <div class="repoWrapper">
-                <img src="img/github-light.png" height="20" id="github-icon">
-                <input type="text" id="repoUrl" class="repoUrl" placeholder="Enter GitHub repo URL">
-                <button id="fetchFiles" class="button">Fetch</button>
+                <div>
+                    <p>Light/Dark</p>
+                    <label class="mode-switch">
+                        <input id="view-mode" type="checkbox" />
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <iframe
+                    src="https://ghbtns.com/github-btn.html?user=dphilla&amp;repo=boxer&amp;type=star&amp;count=true&amp;size=large"
+                    frameborder="0" scrolling="0" width="125" height="30" title="GitHub"></iframe>
             </div>
         </div>
-        <div class="subContainer">
-            <div class="githubCode">
-                <h3>Github Files:</h3>
-                <div class="codebase">
-                    <ul class="fileList" id="fileList">
-                    </ul>
+        <div class="container">
+            <div class="repo">
+                <div class="repoWrapper">
+                    <img src="img/github-light.png" height="20" id="github-icon">
+                    <input type="text" id="repoUrl" class="repoUrl" placeholder="Enter GitHub repo URL">
+                    <button id="fetchFiles" class="button">Fetch</button>
                 </div>
             </div>
-            <div class="docker">
-                <div class="dockerFile">
-                    <div class="textBox">
-                        <h3>Dockerfile:</h3>
-                        <textarea id="dockerText" class="dockerText"
-                            placeholder="Enter your own Dockerfile code, or select a language icon."></textarea>
-                        <button id="deployButton" class="button">Deploy!</button>
+            <div class="subContainer">
+                <div class="githubCode">
+                    <h3>Github Files:</h3>
+                    <div class="codebase">
+                        <ul class="fileList" id="fileList">
+                        </ul>
                     </div>
                 </div>
-                <div class="dockerLang">
-                    <button type="button" class="codeLang" onclick="dockerfileLang('python')"><img
-                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
-                            height="40" alt="python logo" /></button>
-                    <button type="button" class="codeLang" onclick="dockerfileLang('ruby')"><img
-                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ruby/ruby-original.svg" height="40"
-                            alt="ruby logo" /></button>
-                    <button type="button" class="codeLang" onclick="dockerfileLang('c')"><img
-                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" height="40"
-                            alt="ruby logo" /></button>
+                <div class="docker">
+                    <div class="dockerFile">
+                        <div class="textBox">
+                            <h3>Dockerfile:</h3>
+                            <textarea id="dockerText" class="dockerText"
+                                placeholder="Enter your own Dockerfile code, or select a language icon."></textarea>
+                            <button id="deployButton" class="button">Deploy!</button>
+                        </div>
+                    </div>
+                    <div class="dockerLang">
+                        <button type="button" class="codeLang" onclick="dockerfileLang('python')"><img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                                height="40" alt="python logo" /></button>
+                        <button type="button" class="codeLang" onclick="dockerfileLang('ruby')"><img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ruby/ruby-original.svg"
+                                height="40" alt="ruby logo" /></button>
+                        <button type="button" class="codeLang" onclick="dockerfileLang('c')"><img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" height="40"
+                                alt="ruby logo" /></button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <div id="terminal-container">
+        <div id="terminal"></div>
+        <button id="returnButton" class="button">Go back</button>
+    </div>
     <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xterm/lib/xterm.js"></script>
+
 </body>
 
 </html>

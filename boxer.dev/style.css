@@ -6,7 +6,7 @@
     color: var(--text-color);
 }
 
-:root {
+.light-mode {
     --bg-img: url("img/boxer-bg-light.png");
     --bg-img-mobile: url("img/boxer-bg-light-mobile.png");
     --text-color: black;
@@ -333,4 +333,9 @@ textarea.dockerText:focus {
         display: flex;
         flex-direction: row;
     }
+}
+
+#terminal {
+    width: 100%;
+    background-image: var(--bg-img);
 }
