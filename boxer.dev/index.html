@@ -1,47 +1,218 @@
-<h1 align="center" id="wasmboxer">Boxer</h1>
-<div align="center">
-<iframe src="https://ghbtns.com/github-btn.html?user=dphilla&repo=boxer&type=star&count=true&size=large" frameborder="0" scrolling="0" width="125" height="30" title="GitHub"></iframe>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://boxer.dev/">
+<meta property="og:title" content="Boxer: Smaller, Faster, Safer">
+<meta property="og:description" content="Boxer offers a lightweight, secure, and near-universally deployable alternative to traditional containers using WebAssembly.">
+<meta property="og:image" content="https://github.com/user-attachments/assets/ff7eb2f4-48da-4e91-a2f7-cbc6ba8e0b2b">
 
-<p align="center">
-  <p align="center">
-    <a href="https://en.wikipedia.org/wiki/Mia_St._John" target="_blank">
-      <img src="https://user-images.githubusercontent.com/20820229/164059786-8d082b44-59d6-431a-adf4-993116c8d492.png" alt="Mia St John" width="300"             height="400">
-    </a>
-  </p>
-</p>
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@d_philla">
+<meta name="twitter:creator" content="@d_philla">
+<meta name="twitter:title" content="Boxer: Smaller, Faster, Safer">
+<meta name="twitter:description" content="Boxer offers a lightweight, secure, and near-universally deployable alternative to traditional containers using WebAssembly.">
+<meta name="twitter:image" content="https://github.com/user-attachments/assets/ff7eb2f4-48da-4e91-a2f7-cbc6ba8e0b2b">
+
+  <title>Boxer</title>
+  <style>
+    /* Base styling for retro vibe */
+    body {
+      background-color: black;
+      color: #f8d210;
+      font-family: 'Press Start 2P', sans-serif; /* Retro arcade font */
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    /* Centered header with a retro streetfighter vibe */
+    h1, h2 {
+      font-size: 2em;
+      text-transform: uppercase;
+      margin: 20px 0;
+      color: #ff414d; /* Punchy, vibrant red */
+      text-shadow: 2px 2px #000;
+    }
+
+    h3 {
+      font-size: 2em;
+      color: #04d9ff; /* Vibrant cyan for variety */
+      text-shadow: 2px 2px #000;
+    }
+
+    /* Retro-style button */
+    iframe {
+      margin: 20px 0;
+      border: 4px solid #ff414d; /* Red outline to match the header */
+      box-shadow: 5px 5px #04d9ff;
+    }
+
+    /* Image border styling to mimic an arcade game frame */
+    img {
+      border: 8px solid #ff414d;
+      box-shadow: 8px 8px #04d9ff;
+      margin-top: 20px;
+    }
+
+    /* Container styling for text */
+    p, ul, pre {
+      font-size: 1.2em;
+      color: #f8d210;
+      line-height: 1.5;
+      text-shadow: 1px 1px #000;
+    }
+
+    ul {
+      list-style-type: disc;
+      padding-left: 40px;
+      text-align: left;
+    }
+
+    a {
+      color: #f8d210;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #ff414d;
+      text-decoration: underline;
+    }
+
+    /* Styling for code blocks */
+    pre code {
+      background-color: #333;
+      color: #f8d210;
+      padding: 10px;
+      border: 3px solid #ff414d;
+      box-shadow: 5px 5px #04d9ff;
+      font-family: 'Courier New', Courier, monospace;
+      display: block;
+      text-align: left;
+    }
+
+    /* Box-shadow for retro buttons */
+    iframe {
+      box-shadow: 0px 0px 15px #ff414d;
+    }
+
+     .subscribe-input {
+      font-family: 'Press Start 2P', sans-serif;
+      font-size: 1em;
+      padding: 10px;
+      border: 3px solid #ff414d;
+      background-color: #333;
+      color: #f8d210;
+      text-shadow: 1px 1px #000;
+      box-shadow: 5px 5px #04d9ff;
+      width: 250px;
+      margin-bottom: 10px;
+    }
+
+    .subscribe-button {
+      font-family: 'Press Start 2P', sans-serif;
+      font-size: 1em;
+      padding: 10px 20px;
+      color: #f8d210;
+      background-color: #ff414d;
+      border: none;
+      box-shadow: 5px 5px #04d9ff;
+      cursor: pointer;
+      text-transform: uppercase;
+      text-shadow: 1px 1px #000;
+    }
+
+    .subscribe-button:hover {
+      background-color: #04d9ff;
+      color: #ff414d;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
 
 <h1 id="wasmboxer">Boxer</h1>
-<h2 id="overview">Overview</h2>
-<p>Boxer is an open-source project designed to reimagine cloud computing by transitioning from traditional container technology to WebAssembly (Wasm) based distributions, known as &quot;Boxes&quot; or &quot;Wasm-Boxes&quot;.</p>
-<h2 id="motivation">Motivation</h2>
-<p>While containers have been a cornerstone of cloud computing, providing isolated environments for applications, they come with significant drawbacks. They often result in larger, less efficient deployments with slower startup times and rely heavily on the underlying operating system/kernel for security, which can introduce vulnerabilities and platform lock-in.</p>
-<h2 id="solution-wasmboxer">Solution: Boxer</h2>
-<p>Boxer (A.K.A "boxer") offers a new solution by providing tooling for converting existing containerized workloads and definitions into near-universally deployable Wasm distributions. These &quot;Boxes&quot; offer environments comparable to those provided by containers but are vastly more efficient thanks to the lightweight, sandboxed execution capabilities of WebAssembly.</p>
-<p align="center">
-  <p align="center">
-    <a href="https://boxer.dev" target="_blank">
-      <img src="https://github.com/dphilla/wasm-vfs/assets/20820229/4b0309d8-c8ae-427a-8af3-67857a8eebf3" alt="Container and Box" width="400"             height="400">
-    </a>
-  </p>
+<div>
+  <iframe src="https://ghbtns.com/github-btn.html?user=dphilla&repo=boxer&type=star&count=true&size=large" frameborder="0" scrolling="0" width="125" height="30" title="GitHub"></iframe>
+</div>
+
+<p>
+  <a href="https://github.com/dphilla/boxer" target="_blank">
+    <img src="https://user-images.githubusercontent.com/20820229/164059786-8d082b44-59d6-431a-adf4-993116c8d492.png" alt="Mia St John" width="300" height="400">
+  </a>
 </p>
 
+<h2 id="example">TL;DR:</h2>
+<h3 id="dockerfile-wasm-binary">DOCKERFILE -&gt; Universal Wasm Binary</h3>
+<p>
+Smaller, Safer, Faster, (much more) Universal
+</p>
+
+<p>
+  <a href="https://github.com/dphilla/boxer" style="text-decoration: underline;" target="_blank">
+	  Check out our Github!
+  </a>
+</p>
+
+<div  style="text-decoration: none; font-size: 10px;padding-bottom: 8px;"> or, get updates + early access to our release:</div>
+
+<!-- Subscription Form -->
+<div class="subscribe-container">
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSeEmNN5s8mZ5nNfQQFC-rEQls2K5EKG1btfiAoTEo-yyaV6cQ/viewform?usp=sf_link" style="text-decoration: underline;" target="_blank">
+    <button class="subscribe-button">Subscribe</button>
+  </a>
+</div>
+
+
+<!--
+<a style="text-decoration: underline; font-size: 10px;" target="_blank" href="https://discord.gg/uYfvKXVDkR">or, reach out on Discord</a>
+-->
+
+<br>
+<br>
+<br>
+<br>
+
+<h2 id="overview">Overview</h2>
+<p>Boxer is an open-source project designed to reimagine cloud computing by transitioning from traditional container technology to WebAssembly (Wasm) based distributions, known as &quot;Boxes&quot; or &quot;WasmBoxes&quot;.</p>
+
+<h2 id="motivation">Motivation</h2>
+<p>While containers have been a cornerstone of cloud computing, they come with significant drawbacks. They often result in larger, less efficient deployments with slower startup times and rely heavily on the underlying operating system/kernel for security, which can introduce vulnerabilities and platform lock-in.</p>
+
+<h2 id="solution-wasmboxer">Solution: Boxer</h2>
+<p>Boxer (A.K.A "Wasm-Boxer") offers a new solution by providing tooling for converting existing containerized workloads and definitions into near-universally deployable Wasm distributions. These &quot;Boxes&quot; offer environments comparable to those provided by containers but are vastly more efficient thanks to the lightweight, sandboxed execution capabilities of WebAssembly.</p>
+
+<p>
+  <a href="https://boxer.dev" target="_blank">
+    <img src="https://github.com/dphilla/wasm-vfs/assets/20820229/4b0309d8-c8ae-427a-8af3-67857a8eebf3" alt="Container and Box" width="400" height="400">
+  </a>
+</p>
 
 <h3 id="key-advantages-of-webassembly-">Key Advantages of WebAssembly:</h3>
 <ul>
-<li><strong>Reduced Overhead:</strong> Wasm&#39;s compact binary instruction format ensures lightweight execution, drastically cutting down the overhead seen in traditional containers.</li>
-<li><strong>Enhanced Performance:</strong> The efficiency of Wasm leads to improved performance and smaller, more efficient deployments, perfectly suited for cloud computing.</li>
-<li><strong>Superior Security:</strong> Wasm&#39;s memory-safe, isolated execution environment provides a higher level of security, independent of the operating system.</li>
-<li><strong>Run (almost) Everywhere</strong> Wasm can run a anywhere there is a WebAssembly runtime, including browsers, servers, and embedded devices; existing runtimes are available on for a <a href="https://github.com/appcypher/awesome-wasm-runtimes">wide variety of architectures.</a></li>
+  <li><strong>Reduced Overhead:</strong> Wasm&#39;s compact binary instruction format ensures lightweight execution, drastically cutting down the overhead seen in traditional containers.</li>
+  <li><strong>Enhanced Performance:</strong> The efficiency of Wasm leads to improved performance and smaller, more efficient deployments, perfectly suited for cloud computing.</li>
+  <li><strong>Superior Security:</strong> Wasm&#39;s memory-safe, isolated execution environment provides a higher level of security, independent of the operating system.</li>
+  <li><strong>Run (almost) Everywhere</strong> Wasm can run anywhere there is a WebAssembly runtime, including browsers, servers, and embedded devices; existing runtimes are available for a <a href="https://github.com/appcypher/awesome-wasm-runtimes">wide variety of architectures.</a></li>
 </ul>
-<h2 id="example">Example</h2>
-<h3 id="dockerfile-wasm-binary">Dockerfile -&gt; Wasm Binary</h3>
-<p>For for this file:</p>
-<pre><code class="lang-Dockerfile"><span class="hljs-keyword">FROM</span> ubuntu:latest
-<span class="hljs-keyword">RUN</span><span class="bash"> mkdir -p /app
-</span><span class="hljs-keyword">COPY</span><span class="bash"> a.out /app
-</span><span class="hljs-keyword">WORKDIR</span><span class="bash"> /app
-</span><span class="hljs-keyword">CMD</span><span class="bash"> [<span class="hljs-string">"/app/a.out"</span>]</span>
-</code></pre>
-<p>run  <code>box build -f Dockerfile</code></p>
-<p>This will bring in libc interaces (as imports) and create the necessary FS state, thus declaritivey creating a ready-to-run Wasm binary.</p>
+
+
+<!--
+<p>
+Join our discord to chat with maintainers, and learn more:
+</p>
+<a style="text-decoration: underline;" href="https://discord.gg/uYfvKXVDkR">Boxer Discord Server</a>
+-->
+
+
+<br>
+<br>
+<br>
+<br>
+
+</body>
+</html>
