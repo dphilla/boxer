@@ -1,196 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Boxer-Python</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: lightblue;
-            color: #f0f0f0;
-        }
-        #fileList {
-            font-size: 12px; /* Smaller font size */
-            color: black;    /* Black font color */
-        }
-        #fileList a {
-            text-decoration: none;
-            color: black;    /* Black font color for links */
-        }
-        #fileList a:hover {
-            text-decoration: underline; /* Underline on hover */
-        }
-        h1 {
-            color: #007acc;
-            font-size: 25px;
-            position: absolute;
-            top: 25px;
-            margin-bottom: 5%;
-            z-index: 1000; /* Ensure it is on top of other content */
-        }
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            width: 100%;
-            max-width: 1200px;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        .image {
-            flex: 1;
-            padding: 10px;
-            display: flex;
-            height: 60vh;
-            justify-content: center;
-            align-items: center;
-        }
-        .image img {
-            max-width: 100%;
-            height: 20vh;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .code {
-            flex: 1;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-        }
-        .github-input {
-            flex: 1;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-        }
-        .code textarea {
-            width: 100%;
-            height: 60vh;
-            border: none;
-            border-radius: 8px;
-            padding: 10px;
-            font-family: 'Fira Code', monospace;
-            font-size: 16px;
-            background-color: #2b2b2b;
-            color: #f0f0f0;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            resize: none;
-        }
-        .code textarea:focus {
-            outline: none;
-            box-shadow: 0 0 10px #007acc;
-        }
-         .button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #007acc;
-            width: 180px;
-            align-self: center;
-            color: #f0f0f0;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-         .github-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 1000; /* Ensure it is on top of other content */
-        }
-        @media (max-width: 600px) {
-            .container {
-                flex-direction: column;
-                padding-top: 300px;
-            }
-            h1 {
-              margin-top: 10%;
-              margin-left: 3%;
-            }
-            .code textarea {
-                height: 50vh;
-            }
-        }
-    </style>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm/css/xterm.css">
 </head>
+
 <body>
-    <h1>Boxer - Deploy a Python App Now</h1>
-    <div class="github-btn">
-        <iframe src="https://ghbtns.com/github-btn.html?user=dphilla&amp;repo=boxer&amp;type=star&amp;count=true&amp;size=large" frameborder="0" scrolling="0" width="125" height="30" title="GitHub"></iframe>
+    <div id="dashboard">
+        <div class="header">
+            <div class="brand">
+                <h3>Boxer</h3>
+                <img src="img/boxer.png" alt="boxer logo" class="boxerLogo">
+            </div>
+            <h1>
+                Deploy a Python App Now
+            </h1>
+            <div>
+                <div>
+                    <p>Light/Dark</p>
+                    <label class="mode-switch">
+                        <input id="view-mode" type="checkbox" />
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <iframe
+                    src="https://ghbtns.com/github-btn.html?user=dphilla&amp;repo=boxer&amp;type=star&amp;count=true&amp;size=large"
+                    frameborder="0" scrolling="0" width="125" height="30" title="GitHub"></iframe>
+            </div>
+        </div>
+        <div class="container">
+            <div class="repo">
+                <div class="repoWrapper">
+                    <img src="img/github-light.png" height="20" id="github-icon">
+                    <input type="text" id="repoUrl" class="repoUrl" placeholder="Enter GitHub repo URL">
+                    <button id="fetchFiles" class="button">Fetch</button>
+                </div>
+            </div>
+            <div class="subContainer">
+                <div class="githubCode">
+                    <h3>Github Files:</h3>
+                    <div class="codebase">
+                        <ul class="fileList" id="fileList">
+                        </ul>
+                    </div>
+                </div>
+                <div class="docker">
+                    <div class="dockerFile">
+                        <div class="textBox">
+                            <h3>Dockerfile:</h3>
+                            <textarea id="dockerText" class="dockerText"
+                                placeholder="Enter your own Dockerfile code, or select a language icon."></textarea>
+                            <button id="deployButton" class="button">Deploy!</button>
+                        </div>
+                    </div>
+                    <div class="dockerLang">
+                        <button type="button" class="codeLang" onclick="dockerfileLang('python')"><img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                                height="40" alt="python logo" /></button>
+                        <button type="button" class="codeLang" onclick="dockerfileLang('ruby')"><img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ruby/ruby-original.svg"
+                                height="40" alt="ruby logo" /></button>
+                        <button type="button" class="codeLang" onclick="dockerfileLang('c')"><img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" height="40"
+                                alt="ruby logo" /></button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="container">
-        <div class="code">
-        <div class="github-input">
-        <input type="text" id="repoUrl" placeholder="Enter GitHub repo URL">
-        <button id="fetchFiles">Fetch Files</button>
-        <ul id="fileList"></ul>
-        </div>
-          (Dockerfile)
-            <textarea>
-FROM python:3
-WORKDIR /usr/src/app
-COPY . .
-CMD [ "python", "./script.py" ]
-            </textarea>
-             <button id="deployButton" class="button">Deploy!</button>
-        </div>
-
-        <div class="image">
-            <a href="/" target="_blank">
-            <img src="https://user-images.githubusercontent.com/20820229/164059786-8d082b44-59d6-431a-adf4-993116c8d492.png" alt="Placeholder Image">
-            </a>
-            <!--<img src="https://user-images.githubusercontent.com/20820229/164059786-8d082b44-59d6-431a-adf4-993116c8d492.png" alt="Mia St John" width="300" height="400">-->
-        </div>
+    <div id="terminal-container">
+        <div id="terminal"></div>
+        <button id="returnButton" class="button">Go back</button>
     </div>
+    <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xterm/lib/xterm.js"></script>
 
-
-    <script>
-        document.getElementById('fetchFiles').onclick = async function() {
-            const repoUrl = document.getElementById('repoUrl').value;
-            const fileListElement = document.getElementById('fileList');
-            fileListElement.innerHTML = '';
-
-            const match = repoUrl.match(/github\.com\/([^\/]+)\/([^\/]+)/);
-            if (!match) {
-                alert('Invalid GitHub URL');
-                return;
-            }
-
-            const [_, owner, repo] = match;
-            const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents`;
-
-            try {
-                const response = await fetch(apiUrl);
-                if (!response.ok) {
-                    throw new Error(`Error fetching repository contents: ${response.statusText}`);
-                }
-
-                const files = await response.json();
-                files.forEach(file => {
-                    const listItem = document.createElement('li');
-                    const link = document.createElement('a');
-                    link.href = `https://github.com/${owner}/${repo}/blob/main/${file.path}`;
-                    link.target = '_blank'; // Open link in a new tab
-                    link.textContent = file.path;
-                    listItem.appendChild(link);
-                    fileListElement.appendChild(listItem);
-                });
-            } catch (error) {
-                alert('Failed to fetch repository contents: ' + error.message);
-            }
-        };
-
-        document.getElementById('deployButton').onclick = function() {
-            window.location.href = 'https://boxer.dev';
-        };
-    </script>
 </body>
-</html>
 
+</html>

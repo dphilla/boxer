@@ -1,0 +1,341 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-color);
+}
+
+.light-mode {
+    --bg-img: url("img/boxer-bg-light.png");
+    --bg-img-mobile: url("img/boxer-bg-light-mobile.png");
+    --text-color: black;
+    --text-box: linear-gradient(lightgrey, lightgrey) padding-box,
+        linear-gradient(white, #9ef4ff) border-box;
+    --button-color: #9ef4ff;
+    --button-box-shadow: #6399a0 0 2px 4px, #6399a0 0 7px 13px -3px, #8edbe5 0 -3px 0 inset;
+    --button-box-shadow-active: #5e9299 0 3px 7px inset;
+    --button-box-shadow-focus: #5e9299 0 0 0 1.5px inset, #6399a0 0 2px 4px, #6399a0 0 7px 13px -3px, #5e9299 0 -3px 0 inset
+}
+
+.dark-mode {
+    --bg-img: url("img/boxer-bg-dark.png");
+    --bg-img-mobile: url("img/boxer-bg-dark-mobile.png");
+    --text-color: white;
+    --text-box: linear-gradient(#0d1017, #0d1017) padding-box,
+        linear-gradient(#0d1017, rebeccapurple) border-box;
+    --button-color: #FCFCFD;
+    --button-box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    --button-box-shadow-active: #D6D6E7 0 3px 7px inset;
+    --button-box-shadow-focus: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset
+}
+
+body {
+    background-image: var(--bg-img);
+    overflow: hidden;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+}
+
+.boxerLogo {
+    height: 75px;
+    width: 50px;
+}
+
+/* Containter for our Light/Dark mode switch */
+.mode-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+/* Will hide default checkbox */
+.mode-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The track */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    background-color: #ccc;
+    border-radius: 24px;
+    width: 100%;
+    height: 100%;
+    transition: background-color 0.3s;
+}
+
+/* Rounded slider */
+.slider::before {
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 2px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+/* Toggled state */
+.mode-switch input:checked+.slider {
+    background-color: rebeccapurple;
+}
+
+.mode-switch input:checked+.slider::before {
+    transform: translateX(22px);
+}
+
+.container {
+    height: 90vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.repo {
+    width: 60vw;
+    height: 20vh;
+    margin-bottom: 20px;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.repoWrapper {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    background: var(--text-box);
+    border: 1px solid transparent;
+    border-radius: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+.repoUrl {
+    border: hidden;
+    background-color: transparent;
+    flex: 1;
+    font-size: 20px;
+}
+
+input.repoUrl:focus {
+    outline: none;
+}
+
+
+#fetchFiles {
+    height: 30px;
+}
+
+
+.subContainer {
+    width: 100vw;
+    height: 50vh;
+    display: flex;
+
+}
+
+.githubCode {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.codebase {
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    height: 400px;
+    padding: 15px 0px 15px 0px;
+}
+
+.fileList {
+    column-width: 115px;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    position: relative;
+    text-decoration: none;
+}
+
+a::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: var(--text-color);
+    bottom: 0;
+    left: 0;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .3s ease-in-out;
+}
+
+a:hover::before {
+    transform-origin: left;
+    transform: scaleX(1);
+}
+
+.docker {
+    width: 50vw;
+    display: flex;
+    align-items: center;
+}
+
+.dockerFile {
+    display: flex;
+    padding: 0px 10px 0px 0px;
+    gap: 20px;
+}
+
+.dockerText {
+    width: 550px;
+    height: 400px;
+    background: var(--text-box);
+    border: 1px solid transparent;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 15px;
+}
+
+textarea.dockerText:focus {
+    outline: none;
+}
+
+.textBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.dockerLang {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.codeLang {
+    border: hidden;
+    background-color: transparent;
+}
+
+
+.button {
+    align-items: center;
+    align-self: center;
+    background-color: var(--button-color);
+    border-radius: 4px;
+    border-width: 0;
+    box-shadow: var(--button-box-shadow);
+    box-sizing: border-box;
+    color: black;
+    display: inline-flex;
+    height: 48px;
+    justify-content: center;
+    padding-left: 16px;
+    padding-right: 16px;
+    transition: box-shadow .15s, transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow, transform;
+    font-size: 18px;
+}
+
+.button:focus {
+    box-shadow: var(--button-box-shadow-focus);
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    cursor: pointer;
+}
+
+.button:active {
+    box-shadow: var(--button-box-shadow-active);
+    transform: translateY(2px);
+}
+
+
+@media (max-width: 600px) {
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        overflow: scroll;
+        background-image: var(--bg-img-mobile);
+    }
+
+    .header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .subContainer {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .repoWrapper {
+        width: 100vw;
+        display: flex;
+    }
+
+    .docker {
+        width: 100vw;
+        display: flex;
+        flex-direction: column-reverse;
+
+    }
+
+    .dockerText {
+        width: 80vw;
+        height: 300px;
+        resize: none;
+    }
+
+    .dockerLang {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+#terminal {
+    width: 100%;
+    background-image: var(--bg-img);
+}
