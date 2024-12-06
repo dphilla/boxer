@@ -7,6 +7,7 @@ edition = "2021"
 
 [dependencies]
 anyhow = "1.0.40"
+marcotte = "0.0.1"
 dockerfile-parser = "0.8.0"
 wasm-encoder = "0.38.1"
 wasmparser = "0.106.0"
@@ -15,3 +16,4 @@ wasmtime = "17.0.0"
 wasmtime-wasi = "16.0.0" # pinned at 16 bc of trans dep on wasi-common for wizer
 structopt = "0.3.26"
 clap = "2.33"
+walkdir = "2.3"

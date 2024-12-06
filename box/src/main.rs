@@ -116,12 +116,63 @@ fn execute_env(instr: EnvInstruction) {
 }
 
 fn execute_copy(builder: &mut Builder, instr: CopyInstruction) {
-    println!("Building + Bundling runtime, stdlibs, source code, and FS...\n this can take a *several* seconds...\n");
-    //builder.bundle_fs("/usr", "./ruby-3.2-wasm32-unknown-wasi-full/usr", "final_build.wasm");
-    builder.bundle_fs("/src", "./demo_src", "final_build.wasm");
+    use std::fs;
+    use std::io::ErrorKind;
+    use std::path::Path;
+    use walkdir::WalkDir;
+    use std::collections::HashMap;
 
-    println!("Bundling of runtime, source code, and FS is complete!!\n");
-    ()
+    // In-memory structure to store files and their destinations
+    let mut wasm_fs_buffer: HashMap<String, Vec<u8>> = HashMap::new();
+
+    for src in &instr.sources {
+        let src_path = Path::new(src);
+        let dest_path = Path::new(&instr.destination);
+
+        if !src_path.exists() {
+            eprintln!("Error: Source path {} does not exist.", src_path.display());
+            continue;
+        }
+
+        if src_path.is_file() {
+            match fs::read(src_path) {
+                Ok(file_content) => {
+                    let dest_file_path = dest_path
+                        .join(src_path.file_name().unwrap())
+                        .to_string_lossy()
+                        .to_string();
+                    wasm_fs_buffer.insert(dest_file_path, file_content);
+                }
+                Err(e) => eprintln!("Error reading file {}: {}", src_path.display(), e),
+            }
+        } else if src_path.is_dir() {
+            for entry in WalkDir::new(src_path) {
+                match entry {
+                    Ok(entry) => {
+                        let path = entry.path();
+                        if path.is_file() {
+                            match fs::read(path) {
+                                Ok(file_content) => {
+                                    let relative_path = path.strip_prefix(src_path).unwrap();
+                                    let dest_file_path = dest_path
+                                        .join(relative_path)
+                                        .to_string_lossy()
+                                        .to_string();
+                                    wasm_fs_buffer.insert(dest_file_path, file_content);
+                                }
+                                Err(e) => eprintln!("Error reading file {}: {}", path.display(), e),
+                            }
+                        }
+                    }
+                    Err(e) => eprintln!("Error traversing directory {}: {}", src_path.display(), e),
+                }
+            }
+        } else {
+            eprintln!("Error: Unsupported path type for {}.", src_path.display());
+        }
+    }
+
+    builder.bundle_fs_from_buffer(wasm_fs_buffer);
 }
 
 fn execute_entrypoint(instr: EntrypointInstruction) {
