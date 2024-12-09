@@ -47,6 +47,7 @@ impl Builder {
             },
             "nginx:alpine" => {
             },
+            // etc.
             _ => {
                 println!("Base '{}' not recognized.", base);
             }
@@ -84,11 +85,6 @@ impl Builder {
     }
 
     pub fn build(&self, wasm_only: bool) {
-        // Makes single executable: runtime, .wasm, args, OR just wasm + args
-        // If single executable, make the host run exec command on execution.
-
-        // future: bindings to drop in a js , or a node env, etc., could
-        // interface with signatures.
     }
 
     pub fn set_working_directory(&mut self, dir: PathBuf) {

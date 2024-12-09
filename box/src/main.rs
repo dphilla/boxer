@@ -28,7 +28,6 @@ enum BoxCli {
     #[structopt(name = "run")]
     /// Runs a built box; if no name given, defaults to last built box
     Run {
-        // add args to pass runtime, etc
     },
 }
 
@@ -59,13 +58,7 @@ fn main() {
             }
         }
         BoxCli::Run { /* ... */ } => {
-            let wasm_file = "final_build.wasm";
-            //let script = "demo_src/my_app.rb";
-            let script = "src/my_app.rb";
-
-            if let Err(e) = execute_wasm_with_wasmtime(wasm_file, script) {
-                eprintln!("Error executing WASM with Wasmtime: {}", e);
-            }
+            //
         },
     }
 }
@@ -83,19 +76,6 @@ fn execute_run(instr: RunInstruction) {
 }
 
 fn execute_cmd(instr: CmdInstruction) {
-    // start here:
-
-    //     1.2 - save WORKDIR in struct and add it to 1.4 if it is defined
-    //
-    //     1.3 - COPY: /src and demo_src/ and makes those the guest, host for bundle_fs
-    //       respectively
-    //
-    //     1.4 - save path to pass wo execute in path_cache, use last date after build if unique
-    //       names (just a string like '/src/my_app.py'. (this gets appended on to the WORKDIR at
-    //       runtime)
-    //       do in CMD or ENTRYPOINT or RUN)
-    //           - Must check for 'ruby' or 'python'
-
     println!("Execution complete!");
 }
 
@@ -194,7 +174,6 @@ fn execute_arg(instr: ArgInstruction) {
 fn execute_misc(builder: &mut Builder, instr: MiscInstruction) {
     //handles: `MAINTAINER`, `EXPOSE`, `VOLUME`, `Add`
     //`USER`, `WORKDIR`, `ONBUILD`, `STOPSIGNAL`, `HEALTHCHECK`, `SHELL`
-    // TODO: start here
 
     //println!("{:#?}", instr.arguments.components[0] - match on for content);
 }
@@ -217,8 +196,6 @@ fn execute_wasm_with_wasmtime(wasm_file: &str, script: &str) -> Result<()> {
     //let start = instance.get_typed_func::<(), ()>(&mut store, "_start")?;
     //start.call(&mut store, ())?;
 
-
-    // shelling out for now, adjust to use as lib
     let command = "wasmtime";
     let args = [wasm_file, "--", script];
 
