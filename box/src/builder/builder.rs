@@ -54,21 +54,6 @@ impl Builder {
         }
     }
 
-    // ADD, COPY -- TODO - still need?
-    pub fn bundle_fs(&mut self, guest_dir: &str, host_dir: &str, output_file: &str) -> io::Result<()> {
-        // generecize for actual vfs + wasi
-        let map_dirs = vec![(PathBuf::from(guest_dir), PathBuf::from(host_dir))];
-
-        let output_bytes = packer::pack(&self.base_build, map_dirs)
-            .map_err(|e| io::Error::new(io::ErrorKind::Other, e))?;
-
-        let output_path = PathBuf::from(output_file);
-        //println!("{:#?}", output_path.display());
-        fs::write(output_path, output_bytes)?;
-
-        Ok(())
-    }
-
     // COPY
     pub fn bundle_fs_from_buffer(&mut self, buffer: HashMap<String, Vec<u8>>) {
         println!("Bundling files into the Wasm virtual filesystem...");
