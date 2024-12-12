@@ -2,9 +2,7 @@
 
 1. **FROM**
    - Initializes a new build stage and sets the base layer.
-   - The standard base layer for alpha release supports these [syscall interfaces](https://github.com/arjunr2/WALI/blob/main/docs/support.md).
-      - Future versions will support full virtualization. See [platform layering](https://github.com/dphilla/marcotte-wasm), and [interfaces](https://github.com/dphilla/wasm-libc).
-   - A base layer includes the Wasm runtime by default, but can be produced with syscall interfaces only, in pure Wasm, with `--wasm-only`
+   - See [Marcotte](https://github.com/dphilla/marcotte) for more info
 
 2. **RUN**
    - Executes commands in a new layer on top of the current layer and commits the results.
