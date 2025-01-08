@@ -8,7 +8,7 @@
   </p>
 </p>
 
-**This project is experimental and under rapid development. Not yet for production use (but will be soon) - use at own risk**
+**This project is under rapid development**
 
 # Boxer
 
@@ -43,7 +43,7 @@ Boxer offers a new solution by providing tooling for converting existing contain
 For for this file:
 
 ```Dockerfile
-FROM ubuntu:latest
+FROM alpine:latest
 RUN mkdir -p /app
 COPY a.out /app
 WORKDIR /app
