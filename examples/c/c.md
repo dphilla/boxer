@@ -26,7 +26,7 @@ WORKDIR /app
 # Copy the source code
 COPY . .
 
-# Build the application - **this builds the golang to WebAssemblly, with the proper interception of system code in for use in a Wasm Box**
+# Build the application - **this builds the program to WebAssemblly, with the proper interception of system code in for use in a Wasm Box**
 RUN gcc -o myapp main.c
 
 # Stage 2: Create the final image
