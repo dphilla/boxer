@@ -29,6 +29,13 @@ enum BoxCli {
     /// Runs a built box; if no name given, defaults to last built box
     Run {
     },
+     #[structopt(name = "compile")]
+    /// Compiles user C code into a Marcotte-based Wasm artifact.
+    Compile {
+        /// One or more .c files you want to compile with Marcotte
+        #[structopt(parse(from_os_str))]
+        c_files: Vec<std::path::PathBuf>,
+    },
 }
 
 fn main() {
@@ -58,8 +65,28 @@ fn main() {
             }
         }
         BoxCli::Run { /* ... */ } => {
-            //
+
         },
+         BoxCli::Compile { c_files } => {
+            let c_files_str: Vec<String> = c_files
+                .iter()
+                .map(|p| p.to_string_lossy().to_string())
+                .collect();
+
+            if c_files_str.is_empty() {
+                eprintln!("No .c files provided to compile!");
+                std::process::exit(1);
+            }
+
+            // 2) Call Marcotte to produce `output.wasm` (by default)
+            if let Err(e) = marcotte::build(&c_files_str) {
+                eprintln!("Marcotte build failed: {:?}", e);
+                std::process::exit(1);
+            }
+
+            println!("Marcotte build succeeded; produced 'output.wasm'.");
+
+        }
     }
 }
 
@@ -106,8 +133,8 @@ fn execute_copy(builder: &mut Builder, instr: CopyInstruction) {
     let mut wasm_fs_buffer: HashMap<String, Vec<u8>> = HashMap::new();
 
     for src in &instr.sources {
-        let src_path = Path::new(src);
-        let dest_path = Path::new(&instr.destination);
+        let src_path = Path::new(src.as_ref());
+        let dest_path = Path::new(instr.destination.as_ref());
 
         if !src_path.exists() {
             eprintln!("Error: Source path {} does not exist.", src_path.display());
@@ -184,7 +211,7 @@ use std::path::PathBuf;
 use anyhow::Result;
 
 fn execute_wasm_with_wasmtime(wasm_file: &str, script: &str) -> Result<()> {
-    // todo:
+
     //let args = vec![PathBuf::from(ruby_script), PathBuf::from(ruby_script)];
     //let args: Vec<String> = args.iter().map(|arg| arg.to_string_lossy().into_owned()).collect();
     //let wasi_ctx =  wasmtime_wasi::WasiCtxBuilder::new().args(&args)?.build();
