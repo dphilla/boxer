@@ -10,6 +10,14 @@ Just put `box` in front your compiler command. This then just uses the standard 
 
 then COPY the resluting binary via your Dockerfile
 
+## Networking
+
+Networking can either leverage the host's (linux) kernel, or a [remote, edge-based micro-kernel](boxer.dev/networking) (for free).
+
+By default, the box will build for edge-networking, to use local networking:
+
+`box build -f <path_to_file> --local-networking`
+
 ## Multi-stage builds
 
 _Build exactly like you would in a mutli-stage container declaration_
@@ -51,7 +59,7 @@ CMD ["./myapp"]
 
 ## Why?
 
-Many reasons. Mostly, because we don't want to (yet) attempt to have a new architecture added to LLVM, or other toolchains, and we certainly don't want to force you to use a non-standard fork or custom compiler.
+Many reasons. Mostly, because we don't want to (yet) attempt to have a new target added to LLVM, or other toolchains, and we certainly don't want to force you to use a non-standard fork or custom compiler.
 
 Technical Explanation:
 

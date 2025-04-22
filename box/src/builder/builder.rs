@@ -36,7 +36,6 @@ impl Builder {
         }
     }
 
-    /// Called from `execute_from` in main.rs
     pub fn config_base(&mut self, base: &str) {
         match base {
             "scratch" => {
@@ -58,9 +57,6 @@ impl Builder {
         }
     }
 
-    /// Called from `execute_copy` in main.rs
-    /// to add `(dest_path, data_bytes)` pairs.
-    /// We'll ephemeral-run them in `build()`.
     pub fn bundle_fs_from_buffer(&mut self, buffer: HashMap<String, Vec<u8>>) {
         println!("Bundling files into the Wasm virtual filesystem...");
         for (path, content) in buffer {
@@ -69,7 +65,11 @@ impl Builder {
         }
     }
 
-    /// The final ephemeral run that calls `wasm_vfs_mount_in_memory`.
+    /// The final ephemeral run that:
+    ///  - calls `wasm_vfs_mount_in_memory`
+    ///  - Assigns stuff to Proc from like ENV, etc
+    ///  - Snapshots module
+    ///
     pub fn build(&mut self, _wasm_only: bool) {
         if self.base_build.is_empty() {
             println!("No base .wasm to finalize. Possibly scratch environment is empty.");

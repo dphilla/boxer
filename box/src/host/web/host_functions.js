@@ -72,7 +72,7 @@ function initWebSocket() {
   });
 }
 
-async function initwasm(wasmurl) {
+async function initWasm(wasmurl) {
   // create websocket (only if /net is needed)
   await initwebsocket();
 
