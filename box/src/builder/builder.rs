@@ -25,6 +25,7 @@ pub struct Builder {
     pub base_build: Vec<u8>,
     pub working_directory: PathBuf,
     pub copied_files: Vec<(String, Vec<u8>)>,  // (dest_path, file_data)
+    pub env_vars: HashMap<String, String>,    // Environment variables
 }
 
 impl Builder {
@@ -33,6 +34,7 @@ impl Builder {
             base_build: Vec::new(),
             working_directory: PathBuf::from("/"),
             copied_files: Vec::new(),
+            env_vars: HashMap::new(),
         }
     }
 
@@ -63,6 +65,11 @@ impl Builder {
             println!("COPY -> path: {}", path);
             self.copied_files.push((path, content));
         }
+    }
+
+    pub fn add_env_var(&mut self, key: String, value: String) {
+        println!("Adding ENV variable: {}={}", key, value);
+        self.env_vars.insert(key, value);
     }
 
     /// The final ephemeral run that:
@@ -195,6 +202,18 @@ impl Builder {
             Err(e) => {
                 eprintln!("Error calling mount_in_memory: {:?}", e);
             }
+        }
+
+        // Print out the environment variables that would be passed to the Wasm module
+        if !self.env_vars.is_empty() {
+            println!("Environment variables for the Wasm module:");
+            for (key, value) in &self.env_vars {
+                println!("  {}={}", key, value);
+            }
+            
+            // In a full implementation, we'd set up these environment variables in the Wasm module
+            // For example, by calling a Wasm export like `wasm_set_environment_vars`
+            // TODO: Implement environment variable passing to Wasm module
         }
 
         println!("Ephemeral run done; the in-memory FS has your copied files.");

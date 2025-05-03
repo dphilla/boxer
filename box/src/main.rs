@@ -56,7 +56,7 @@ fn main() {
                     Instruction::Entrypoint(instr) => execute_entrypoint(instr.clone()),
                     Instruction::Copy(instr) => execute_copy(&mut builder, instr.clone()),
                     Instruction::Cmd(instr) => execute_cmd(instr.clone()),
-                    Instruction::Env(instr) => execute_env(instr.clone()),
+                    Instruction::Env(instr) => execute_env(&mut builder, instr.clone()),
                     Instruction::Misc(instr) => execute_misc(&mut builder, instr.clone()),
                 }
               }
@@ -114,12 +114,16 @@ fn execute_label(instr: LabelInstruction) {
     )
 }
 
-fn execute_env(instr: EnvInstruction) {
-  unimplemented!(
-        r#"
-    handles ENV
-    "#
-    )
+fn execute_env(builder: &mut Builder, instr: EnvInstruction) {
+    println!("Processing ENV instruction");
+    
+    for env_var in instr.0.iter() {
+        // Store the environment variable in the builder
+        builder.add_env_var(env_var.key.clone(), env_var.value.clone());
+        
+        // Also set it in the current process for immediate use
+        std::env::set_var(&env_var.key, &env_var.value);
+    }
 }
 
 fn execute_copy(builder: &mut Builder, instr: CopyInstruction) {
