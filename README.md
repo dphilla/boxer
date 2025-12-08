@@ -15,6 +15,12 @@
 ## Overview
 Boxer is an open-source project designed to reimagine cloud computing by transitioning from traditional container technology to WebAssembly (Wasm) based distributions, known as "Boxes" or "Wasm-Boxes".
 
+Here's a recording of the talk that introduced the project at [Wasm IO](https://2025.wasm.io/) in 2025: 
+
+[<img src="https://img.youtube.com/vi/rHOwhkHv21U/hqdefault.jpg" width="600" height="500"
+/>](https://www.youtube.com/embed/rHOwhkHv21U)
+
+
 ## Motivation
 While containers have been a cornerstone of cloud computing, providing isolated environments for applications, they come with significant drawbacks. They often result in larger, less efficient deployments with slower startup times and rely heavily on the underlying operating system/kernel for security, which can introduce vulnerabilities and platform lock-in.
 
