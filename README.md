@@ -1,3 +1,34 @@
+
+<div align="right">
+  <details>
+    <summary >🌐 Language</summary>
+    <div>
+      <div align="center">
+        <a href="https://openaitx.github.io/view.html?user=dphilla&project=boxer&lang=en">English</a>
+        | <a href="https://openaitx.github.io/view.html?user=dphilla&project=boxer&lang=zh-CN">简体中文</a>
+        | <a href="https://openaitx.github.io/view.html?user=dphilla&project=boxer&lang=zh-TW">繁體中文</a>
+        | <a href="https://openaitx.github.io/view.html?user=dphilla&project=boxer&lang=ja">日本語</a>
+        | <a href="https://openaitx.github.io/view.html?user=dphilla&project=boxer&lang=ko">한국어</a>
+        | <a href="https://openaitx.github.io/view.html?user=dphilla&project=boxer&lang=hi">हिन्दी</a>
+        | <a href="https://openaitx.github.io/view.html?user=dphilla&project=boxer&lang=th">ไทย</a>
+        | <a href="https://openaitx.github.io/view.html?user=dphilla&project=boxer&lang=fr">Français</a>
+        | <a href="https://openaitx.github.io/view.html?user=dphilla&project=boxer&lang=de">Deutsch</a>
+        | <a href="https://openaitx.github.io/view.html?user=dphilla&project=boxer&lang=es">Español</a>
+        | <a href="https://openaitx.github.io/view.html?user=dphilla&project=boxer&lang=it">Italiano</a>
+        | <a href="https://openaitx.github.io/view.html?user=dphilla&project=boxer&lang=ru">Русский</a>
+        | <a href="https://openaitx.github.io/view.html?user=dphilla&project=boxer&lang=pt">Português</a>
+        | <a href="https://openaitx.github.io/view.html?user=dphilla&project=boxer&lang=nl">Nederlands</a>
+        | <a href="https://openaitx.github.io/view.html?user=dphilla&project=boxer&lang=pl">Polski</a>
+        | <a href="https://openaitx.github.io/view.html?user=dphilla&project=boxer&lang=ar">العربية</a>
+        | <a href="https://openaitx.github.io/view.html?user=dphilla&project=boxer&lang=fa">فارسی</a>
+        | <a href="https://openaitx.github.io/view.html?user=dphilla&project=boxer&lang=tr">Türkçe</a>
+        | <a href="https://openaitx.github.io/view.html?user=dphilla&project=boxer&lang=vi">Tiếng Việt</a>
+        | <a href="https://openaitx.github.io/view.html?user=dphilla&project=boxer&lang=id">Bahasa Indonesia</a>
+      </div>
+    </div>
+  </details>
+</div>
+
 # Boxer
 
 <p align="center">
